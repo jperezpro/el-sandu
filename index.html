@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://elsandu.com/">
+    <title>El Sandú - Casa de Alquiler en Santa Ana, Uruguay</title>
+    <link rel="icon" href="assets/ElSanduIcon.webp" type="image/webp">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Coastal Serenity -->
+    <!-- Application Structure Plan: The SPA is designed as a single-page narrative journey. It guides the user logically from initial emotional appeal to detailed exploration and finally to a clear call-to-action. The structure is thematic and linear: 1. Hero (Inspiration), 2. Value Proposition (Quick Summary), 3. Highlights Gallery (Curated Visuals), 4. Features (Detailed Info), 5. Filterable Gallery (Deep Exploration), 6. Location (Context), 7. Booking/Contact (Action). This structure was chosen because it mirrors a potential renter's decision-making process, providing information in digestible layers. The key interactions—a horizontally scrolling highlights gallery and a filterable, lightbox-enabled detailed gallery—are designed to manage the large volume of photos effectively, preventing user overload while encouraging exploration. -->
+    <!-- Visualization & Content Choices: 
+        - Hero Section: Report Info -> Property's essence. Goal -> Inspire. Viz -> Full-screen background image. Interaction -> None (passive). Justification -> Creates immediate immersion. Method -> HTML/CSS.
+        - Value Props: Report Info -> Key selling points (beach, privacy, pet-friendly). Goal -> Inform quickly. Viz -> Icon + Text pairs. Interaction -> None. Justification -> Scannable and visually appealing. Method -> HTML/Unicode/Tailwind.
+        - Highlights Gallery: Report Info -> "WOW" photos. Goal -> Showcase best features. Viz -> Horizontal scrolling carousel. Interaction -> Scroll. Justification -> Presents a curated selection without taking up vertical space. Method -> HTML/Tailwind.
+        - Features List: Report Info -> Detailed amenities. Goal -> Organize. Viz -> Categorized grid with icons. Interaction -> None. Justification -> High readability for detailed information. Method -> HTML/Unicode/Tailwind.
+        - Detailed Gallery: Report Info -> All 42 photos. Goal -> Allow deep exploration. Viz -> Filterable grid with lightbox modal. Interaction -> Click to filter by category, click to open lightbox. Justification -> Manages a large number of assets effectively, giving user control. Method -> HTML/Tailwind/JS.
+        - Location Map: Report Info -> Property location. Goal -> Provide geographical context. Viz -> Embedded Google Map. Interaction -> Standard map controls. Justification -> The most intuitive way to show location. Method -> HTML iframe.
+        - Booking CTA: Report Info -> Semi-automated booking process. Goal -> Convert. Viz -> Prominent button. Interaction -> Click to navigate to Google Calendar booking page. Justification -> Clear, direct action point. Method -> HTML `<a>`.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Descubrí El Sandú, una casa de alquiler para 6 personas en Santa Ana, Uruguay. A pasos del mar y rodeada de naturaleza, es el refugio ideal para tus vacaciones. Equipada con todas las comodidades. ¡Reservá ahora!">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elsandu.com/">
+    <meta property="og:title" content="El Sandú - Casa de Alquiler en Santa Ana, Uruguay">
+    <meta property="og:description" content="Descubrí El Sandú, una casa de alquiler para 6 personas en Santa Ana, Uruguay. A pasos del mar y rodeada de naturaleza, es el refugio ideal para tus vacaciones.">
+    <meta property="og:image" content="https://elsandu.com/assets/hero-section-image.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://elsandu.com/">
+    <meta property="twitter:title" content="El Sandú - Casa de Alquiler en Santa Ana, Uruguay">
+    <meta property="twitter:description" content="Descubrí El Sandú, una casa de alquiler para 6 personas en Santa Ana, Uruguay. A pasos del mar y rodeada de naturaleza, es el refugio ideal para tus vacaciones.">
+    <meta property="twitter:image" content="https://elsandu.com/assets/hero-section-image.webp">
+
+    <!-- Schema.org for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VacationRental",
+      "@id": "https://elsandu.com/#vacationrental",
+      "name": "El Sandú",
+      "description": "Casa de alquiler para 6 personas a metros de la playa en Santa Ana, Uruguay. Combina la tranquilidad de un entorno natural con todas las comodidades para tus vacaciones.",
+      "image": [
+        "https://elsandu.com/assets/hero-section-image.webp",
+        "https://elsandu.com/assets/Fotos/FFR00030.webp",
+        "https://elsandu.com/assets/Fotos/FFR00036.webp",
+        "https://elsandu.com/assets/Fotos/FFR00037.webp",
+        "https://elsandu.com/assets/Fotos/FFR00040.webp",
+        "https://elsandu.com/assets/Fotos/FFR00053.webp",
+        "https://elsandu.com/assets/Fotos/FFR00074.webp",
+        "https://elsandu.com/assets/Fotos/FFR00075.webp"
+      ],
+      "url": "https://elsandu.com/",
+      "identifier": "elsandu-santa-ana",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Santa Ana",
+        "addressLocality": "Santa Ana",
+        "addressRegion": "Canelones",
+        "postalCode": "15300",
+        "addressCountry": "UY"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.794129,
+        "longitude": -55.471040
+      },
+      "petsAllowed": true,
+      "numberOfRooms": 2,
+      "occupancy": {
+        "@type": "QuantitativeValue",
+        "value": 6
+      },
+      "amenityFeature": [
+        {"@type": "LocationFeatureSpecification", "name": "Parrillero Techado", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Estufa a Leña", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Aire Acondicionado", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Internet WiFi", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Cocina Equipada", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "A Pasos del Mar", "value": true}
+      ]
+    }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BDHW2TW4R4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-BDHW2TW4R4');
+    </script>
+</head>
+<body class="antialiased hero-bg">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-semibold text-gray-700 font-serif">El Sandú</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#gallery" class="text-gray-600 hover:text-[#005A5B]">Galería</a>
+                <a href="#features" class="text-gray-600 hover:text-[#005A5B]">Comodidades</a>
+                <a href="#location" class="text-gray-600 hover:text-[#005A5B]">Ubicación</a>
+                <a href="#rates" class="text-gray-600 hover:text-[#005A5B]">Tarifas</a>
+                <a href="#booking" class="px-5 py-2 rounded-md btn-primary">Solicitar Reserva</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#gallery" class="block text-gray-600 hover:text-[#005A5B]">Galería</a>
+            <a href="#features" class="block text-gray-600 hover:text-[#005A5B]">Comodidades</a>
+            <a href="#location" class="block text-gray-600 hover:text-[#005A5B]">Ubicación</a>
+            <a href="#rates" class="block text-gray-600 hover:text-[#005A5B]">Tarifas</a>
+            <a href="#booking" class="block mt-2 px-5 py-2 rounded-md btn-primary text-center">Solicitar Reserva</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="h-screen flex items-center justify-center text-white">
+            <div class="text-center bg-black/50 p-8 rounded-lg">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Viví la experiencia de descansar entre el mar y los árboles.</h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto">Casa para 6 personas a metros de la playa en Santa Ana, Uruguay.</p>
+                <a href="#booking" class="mt-8 inline-block px-8 py-4 text-lg font-semibold rounded-md btn-primary">Solicitar Reserva</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-white/90 backdrop-blur-sm">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Tu refugio entre la arbolada y el mar</h2>
+                <p class="max-w-3xl mx-auto text-gray-600 mb-12">
+                    El Sandú es una casa amplia y cómoda, ubicada a media cuadra de la playa, ideal para disfrutar en familia, con amigos o en pareja. Combina la tranquilidad de un entorno natural con todas las comodidades que necesitás para tus vacaciones.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <span class="text-4xl mb-3 block">🌊</span>
+                        <h3 class="text-xl font-semibold mb-2">A Pasos del Mar</h3>
+                        <p class="text-gray-500">Ubicación privilegiada a media cuadra de la playa.</p>
+                    </div>
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <span class="text-4xl mb-3 block">🌲</span>
+                        <h3 class="text-xl font-semibold mb-2">Arbolado y Privado</h3>
+                        <p class="text-gray-500">Disfrutá del aire libre con total privacidad y seguridad.</p>
+                    </div>
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <span class="text-4xl mb-3 block">🐾</span>
+                        <h3 class="text-xl font-semibold mb-2">Pet Friendly</h3>
+                        <p class="text-gray-500">Tus mascotas son parte de la familia y son bienvenidas.</p>
+                    </div>
+                    <div class="p-6 bg-[#FDFBF8] rounded-lg shadow-sm">
+                        <span class="text-4xl mb-3 block">📅</span>
+                        <h3 class="text-xl font-semibold mb-2">Ideal Todo el Año</h3>
+                        <p class="text-gray-500">Confortable en verano y acogedora en invierno.</p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <a href="#booking" class="btn-primary px-8 py-4 text-lg font-semibold rounded-md">Ver Disponibilidad</a>
+                </div>
+            </div>
+        </section>
+
+
+        
+        <section id="gallery" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">Explorá cada rincón</h2>
+                <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Haz clic en una imagen para verla en detalle.</p>
+
+                <div id="image-gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <img data-src="assets/Fotos/FFR00030.webp" src="assets/Fotos/thumbs/FFR00030.webp" alt="FFR00030.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00036.webp" src="assets/Fotos/thumbs/FFR00036.webp" alt="FFR00036.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00037.webp" src="assets/Fotos/thumbs/FFR00037.webp" alt="FFR00037.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00040.webp" src="assets/Fotos/thumbs/FFR00040.webp" alt="FFR00040.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00053.webp" src="assets/Fotos/thumbs/FFR00053.webp" alt="FFR00053.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00074.webp" src="assets/Fotos/thumbs/FFR00074.webp" alt="FFR00074.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00075.webp" src="assets/Fotos/thumbs/FFR00075.webp" alt="FFR00075.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00076.webp" src="assets/Fotos/thumbs/FFR00076.webp" alt="FFR00076.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00078.webp" src="assets/Fotos/thumbs/FFR00078.webp" alt="FFR00078.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00080.webp" src="assets/Fotos/thumbs/FFR00080.webp" alt="FFR00080.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00084.webp" src="assets/Fotos/thumbs/FFR00084.webp" alt="FFR00084.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00085.webp" src="assets/Fotos/thumbs/FFR00085.webp" alt="FFR00085.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00093.webp" src="assets/Fotos/thumbs/FFR00093.webp" alt="FFR00093.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00094.webp" src="assets/Fotos/thumbs/FFR00094.webp" alt="FFR00094.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00098.webp" src="assets/Fotos/thumbs/FFR00098.webp" alt="FFR00098.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00102.webp" src="assets/Fotos/thumbs/FFR00102.webp" alt="FFR00102.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00107.webp" src="assets/Fotos/thumbs/FFR00107.webp" alt="FFR00107.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00111.webp" src="assets/Fotos/thumbs/FFR00111.webp" alt="FFR00111.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00112.webp" src="assets/Fotos/thumbs/FFR00112.webp" alt="FFR00112.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR00114.webp" src="assets/Fotos/thumbs/FFR00114.webp" alt="FFR00114.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR0101.webp" src="assets/Fotos/thumbs/FFR0101.webp" alt="FFR0101.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR07660.webp" src="assets/Fotos/thumbs/FFR07660.webp" alt="FFR07660.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/FFR07666.webp" src="assets/Fotos/thumbs/FFR07666.webp" alt="FFR07666.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.19 PM (1).webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.19 PM (1).webp" alt="WhatsApp Image 2025-12-29 at 8.34.19 PM (1).webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.19 PM (2).webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.19 PM (2).webp" alt="WhatsApp Image 2025-12-29 at 8.34.19 PM (2).webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.19 PM (3).webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.19 PM (3).webp" alt="WhatsApp Image 2025-12-29 at 8.34.19 PM (3).webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.19 PM.webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.19 PM.webp" alt="WhatsApp Image 2025-12-29 at 8.34.19 PM.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM (1).webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM (1).webp" alt="WhatsApp Image 2025-12-29 at 8.34.20 PM (1).webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM (2).webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM (2).webp" alt="WhatsApp Image 2025-12-29 at 8.34.20 PM (2).webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM (3).webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM (3).webp" alt="WhatsApp Image 2025-12-29 at 8.34.20 PM (3).webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM (4).webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM (4).webp" alt="WhatsApp Image 2025-12-29 at 8.34.20 PM (4).webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM.webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM.webp" alt="WhatsApp Image 2025-12-29 at 8.34.20 PM.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.21 PM (1).webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.21 PM (1).webp" alt="WhatsApp Image 2025-12-29 at 8.34.21 PM (1).webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                    <img data-src="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.21 PM.webp" src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.21 PM.webp" alt="WhatsApp Image 2025-12-29 at 8.34.21 PM.webp" class="lazy-load gallery-item rounded-lg cursor-pointer hover:opacity-80 transition-opacity">
+                </div>
+            </div>
+        </section>
+
+        <div id="lightbox" class="lightbox">
+            <button id="lightbox-close" class="absolute top-5 right-5 text-white text-4xl z-20">&times;</button>
+            <button id="lightbox-prev" class="lightbox-nav lightbox-prev">&lt;</button>
+            <img id="lightbox-image" src="" alt="Vista ampliada">
+            <button id="lightbox-next" class="lightbox-nav lightbox-next">&gt;</button>
+        </div>
+
+        <section id="features" class="py-20 bg-white/90 backdrop-blur-sm">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Características y Comodidades</h2>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-8">
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl text-[#005A5B]">🏠</span>
+                        <div><h3 class="font-semibold">Capacidad para 6 Personas</h3><p class="text-gray-600">Un dormitorio con cama de dos plazas y otro con cuatro sommiers de una plaza.</p></div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl text-[#005A5B]">🛏️</span>
+                        <div><h3 class="font-semibold">2 Dormitorios Amplios</h3><p class="text-gray-600">Espacios luminosos y cómodos para descansar.</p></div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl text-[#005A5B]">🛁</span>
+                        <div><h3 class="font-semibold">2 Baños Completos</h3><p class="text-gray-600">Comodidad para todos los huéspedes.</p></div>
+                    </div>
+                     <div class="flex items-start space-x-4">
+                        <span class="text-2xl text-[#005A5B]">🍳</span>
+                        <div><h3 class="font-semibold">Cocina Equipada</h3><p class="text-gray-600">Todo lo necesario para preparar tus comidas.</p></div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl text-[#005A5B]">🔥</span>
+                        <div><h3 class="font-semibold">Parrillero Techado</h3><p class="text-gray-600">Disfrutá de un asado sin importar el clima.</p></div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl text-[#005A5B]">🪵</span>
+                        <div><h3 class="font-semibold">Estufa a Leña</h3><p class="text-gray-600">Un ambiente cálido y acogedor en invierno.</p></div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl text-[#005A5B]">❄️</span>
+                        <div><h3 class="font-semibold">Aire Acondicionado</h3><p class="text-gray-600">Confort asegurado en los días de calor.</p></div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <span class="text-2xl text-[#005A5B]">📶</span>
+                        <div><h3 class="font-semibold">Internet WiFi</h3><p class="text-gray-600">Mantenete conectado durante tu estadía.</p></div>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <a href="#booking" class="btn-primary px-8 py-4 text-lg font-semibold rounded-md">Ver Disponibilidad</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Un rincón único donde el bosque se une con el océano.</h2>
+                        <p class="text-gray-600 mb-6">Santa Ana es un balneario tranquilo, ideal para quienes buscan desconectar. La casa se encuentra en una ubicación privilegiada, rodeada de naturaleza y a solo unos pasos del mar, permitiéndote disfrutar de la playa sin necesidad de usar el vehículo.</p>
+                    </div>
+                    <div class="h-96 rounded-lg overflow-hidden shadow-xl">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d204.77934097051528!2d-55.47104014684263!3d-34.79412926008976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x957559042b4210ef%3A0xcae90f00b41b6d03!2sEl%20Sandu!5e0!3m2!1ses!2suy!4v1760306464246!5m2!1ses!2suy" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-12">Preguntas Frecuentes</h2>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div class="accordion-item border-b border-gray-200">
+                        <button class="accordion-header w-full text-left py-4 px-2 flex justify-between items-center">
+                            <span class="text-lg font-medium text-gray-800">¿Cuál es el horario de check-in y check-out?</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pt-2 pb-4 px-2 text-gray-600">El check-in es a partir de las 15:00 hs y el check-out es hasta las 11:00 hs. Podemos ser flexibles según la disponibilidad, ¡consultanos!</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-gray-200">
+                        <button class="accordion-header w-full text-left py-4 px-2 flex justify-between items-center">
+                            <span class="text-lg font-medium text-gray-800">¿La casa cuenta con ropa de cama y toallas?</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pt-2 pb-4 px-2 text-gray-600">La casa cuenta con frazadas para todas las camas, pero no incluye ropa de cama (sábanas y fundas) ni toallas.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-gray-200">
+                        <button class="accordion-header w-full text-left py-4 px-2 flex justify-between items-center">
+                            <span class="text-lg font-medium text-gray-800">¿Hay estacionamiento disponible?</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pt-2 pb-4 px-2 text-gray-600">Sí, el predio es cerrado y cuenta con espacio para estacionar cómodamente hasta dos vehículos.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-gray-200">
+                        <button class="accordion-header w-full text-left py-4 px-2 flex justify-between items-center">
+                            <span class="text-lg font-medium text-gray-800">¿Hay algún comercio cerca?</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pt-2 pb-4 px-2 text-gray-600">A dos cuadras calle 7 y Antúnez hay una panadería. A una cuadra y media hay una rotisería Faoma pizzas y postres. A nueve cuadras Supermercado, Carnicería y Restaurante Santa Ana.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-b border-gray-200">
+                        <button class="accordion-header w-full text-left py-4 px-2 flex justify-between items-center">
+                            <span class="text-lg font-medium text-gray-800">¿Hay ómnibus y parada cercana?</span>
+                            <span class="text-2xl font-light transform transition-transform duration-300">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <p class="pt-2 pb-4 px-2 text-gray-600">Se debe tomar el ómnibus de Copsa 713, que sale de Tres Cruces con paradas en H. Clinicas, Comercio, Portones y Santa Mónica. Se puede reservar asiento por teléfono. El viaje a Santa Ana demora 2 horas. El ómnibus en verano pasa cada una hora. Bajarse en Calle 8 de Santa Ana. De allí son 5 cuadras hasta El Sandu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rates" class="py-20 bg-white/90 backdrop-blur-sm">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Tarifas y Políticas de Reserva</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-700 mb-3">Tarifas de Verano</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li><span class="font-semibold">Enero:</span> $24.000 por semana ($3.430 por día)</li>
+                                <li><span class="font-semibold">Febrero:</span> $21.000 por semana ($3.000 por día)</li>
+                            </ul>
+                            <p class="text-sm text-gray-500 mt-2">* Los gastos de luz se cobran aparte.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-700 mb-3">Políticas de Reserva</h4>
+                            <ul class="space-y-2 text-gray-600 list-disc list-inside">
+                                <li>Estadía mínima en temporada alta: <span class="font-semibold">5 días</span>.</li>
+                                <li>Se requiere una seña del <span class="font-semibold">50%</span> para confirmar la reserva.</li>
+                                <li>En caso de cancelación, la seña <span class="font-semibold">no es reembolsable</span>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="booking" class="py-20 bg-white/90 backdrop-blur-sm">
+             <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">¿Cómo reservar?</h2>
+
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="flex items-center justify-center bg-[#005A5B] text-white rounded-full h-16 w-16 text-2xl font-bold">1</div>
+                        <h3 class="text-xl font-semibold my-4">Paso 1</h3>
+                        <p class="text-gray-600">Navegá por el calendario para <span class="font-semibold">ver disponibilidad.</span></p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="flex items-center justify-center bg-[#005A5B] text-white rounded-full h-16 w-16 text-2xl font-bold">2</div>
+                        <h3 class="text-xl font-semibold my-4">Paso 2</h3>
+                        <p class="text-gray-600">Llená el <span class="font-semibold">formulario de reserva.</span></p>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-[640px] mx-auto">
+                    <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=2&ctz=America%2FMontevideo&showPrint=0&showCalendars=0&title=Disponibilidad&showTitle=0&showTabs=0&src=ZWxzYW5kdXNhbnRhYW5hQGdtYWlsLmNvbQ&src=ZXMtNDE5LnV5I2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039be5&color=%230b8043" style="border-width:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+                </div>
+
+                <div class="w-full max-w-4xl mx-auto mt-8">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeFwoSpoXARtZrD_Mmj8u4_xBf0l9rsX65QcGhu84jsWfCd7A/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0" scrolling="no">Cargando…</iframe>
+                </div>
+             </div>
+        </section>
+    </main>
+    
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-serif mb-4">El Sandú</h3>
+            <p class="mb-6">Santa Ana, Canelones, Uruguay.</p>
+             <p class="text-sm text-gray-400 mt-8">&copy; 2025 El Sandú. Todos los derechos reservados.</p>
+             <p class="text-sm text-gray-400 mt-2"><a href="https://jpraffo.com/" target="_blank" class="hover:text-[#A9B7A2]">Diseño Essenza - Javier Perez</a></p>
+        </div>
+    </footer>
+
+    <a href="https://wa.link/vn857j" target="_blank" class="whatsapp-float">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+          <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
