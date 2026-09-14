@@ -15,29 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Lazy Loading for gallery images
-    const lazyImages = document.querySelectorAll('.lazy-load');
-    if ('IntersectionObserver' in window) {
-        const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy-load');
-                    observer.unobserve(img);
-                }
-            });
-        }, { rootMargin: '200px' });
-
-        lazyImages.forEach(img => {
-            lazyLoadObserver.observe(img);
-        });
-    } else {
-        // Fallback for older browsers
-        lazyImages.forEach(img => {
-            img.src = img.dataset.src;
-        });
-    }
+    // La grilla muestra siempre las miniaturas (src). La foto grande (data-src)
+    // se descarga recien al abrir el lightbox, no al scrollear: asi la galeria
+    // pesa ~1 MB en vez de ~11 MB.
 
 
     // Lightbox Gallery
@@ -52,10 +32,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Use data-src for lazy-loaded images, fallback to src
     const imageSources = Array.from(galleryItems).map(item => item.dataset.src || item.src);
 
+    // Precarga la foto vecina para que las flechas no muestren un salto en blanco
+    function preloadNeighbors(index) {
+        [index - 1, index + 1].forEach(i => {
+            const src = imageSources[(i + imageSources.length) % imageSources.length];
+            if (src) new Image().src = src;
+        });
+    }
+
     function showLightbox(index) {
         currentIndex = index;
         lightboxImage.src = imageSources[currentIndex];
         lightbox.classList.add('active');
+        preloadNeighbors(currentIndex);
     }
 
     galleryItems.forEach((item, index) => {
@@ -78,11 +67,13 @@ document.addEventListener('DOMContentLoaded', function() {
     lightboxPrev.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + imageSources.length) % imageSources.length;
         lightboxImage.src = imageSources[currentIndex];
+        preloadNeighbors(currentIndex);
     });
 
     lightboxNext.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % imageSources.length;
         lightboxImage.src = imageSources[currentIndex];
+        preloadNeighbors(currentIndex);
     });
 
     // Accordion
