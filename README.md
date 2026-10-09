@@ -12,7 +12,8 @@ pagina con galeria y lightbox.
 
 Ya no trabajamos con este cliente. `elsandu.com` corre en Hostinger y no
 tenemos acceso: **los cambios de este repo no llegan ahi**. El sitio se
-mantiene en el subdominio de Pages para el portfolio de jperez.pro.
+mantiene en el subdominio de Pages para el portfolio de la web personal
+(web-personal-jperezpro.pages.dev).
 
 ## Deploy
 
