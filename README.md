@@ -7,18 +7,28 @@ pagina con galeria y lightbox.
 
 | URL | Quien la controla | Que sirve |
 |---|---|---|
-| **el-sandu.pages.dev** | Nosotros (Cloudflare Pages) | Lo que hay en este repo. Es la del portfolio. |
+| **elsandu.pages.dev** | Nosotros (Cloudflare Pages) | Lo que hay en este repo. Es la del portfolio. |
 | elsandu.com | El cliente, en Hostinger | Una version vieja. **No la actualizamos.** |
 
 Ya no trabajamos con este cliente. `elsandu.com` corre en Hostinger y no
-tenemos acceso: **los cambios de este repo no llegan ahi**. El sitio se
-mantiene en el subdominio de Pages para el portfolio de la web personal
-(jperez.pages.dev).
+tenemos acceso: **los cambios de este repo no llegan ahi**. Desde octubre de
+2026 ese dominio no anda (el certificado falla y apunta a servidores de
+parking), asi que el canonical, Open Graph, JSON-LD, sitemap y robots apuntan
+a `elsandu.pages.dev`. El sitio se mantiene ahi para el portfolio de la web
+personal (jperez.pages.dev) y como direccion que se le puede ofrecer al
+cliente, sin costo de dominio.
 
 ## Deploy
 
-Cloudflare Pages, proyecto `el-sandu`. **Push a `main` despliega solo.**
+Cloudflare Pages, proyecto `elsandu`. **Push a `main` despliega solo.**
 El proyecto no tiene dominios personalizados.
+
+Hasta el 10/10/2026 el proyecto era `el-sandu` (`el-sandu.pages.dev`). El
+nombre de un proyecto de Pages no se cambia, por eso se creo `elsandu`. El
+proyecto viejo sigue conectado a este repo y publica el mismo codigo:
+`functions/_middleware.js` manda con un 301 cada pedido a `el-sandu.pages.dev`
+a la misma pagina en `elsandu.pages.dev`. `_routes.json` deja `assets/` fuera
+de esa Function.
 
 ## Galeria: como funciona
 

@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 Disallow: /tmp/
 
-Sitemap: https://elsandu.com/sitemap.xml
+Sitemap: https://elsandu.pages.dev/sitemap.xml
