@@ -30,7 +30,30 @@ proyecto viejo sigue conectado a este repo y publica el mismo codigo:
 a la misma pagina en `elsandu.pages.dev`. `_routes.json` deja `assets/` fuera
 de esa Function.
 
-## Galeria: como funciona
+## Renovacion (rama `renovacion`, octubre 2026)
+
+Vista previa para proponerle a Elkis volver al mantenimiento mensual: Cloudflare Pages
+publica cada rama aparte en `renovacion.elsandu.pages.dev`, sin tocar el sitio publicado.
+
+- **Inicio:** video del dron (`assets/inicio/dron-celu.mp4` vertical, `dron-pc.mp4`
+  horizontal, ~1,3 MB c/u) sobre su portada. Se baja despues de cargar la pagina y no con
+  "ahorro de datos".
+- **Tour 360:** `tours.tourvirtual360.pro/el-sandu/` (repo `tours-360`). Hay una portada y el
+  iframe se crea al tocarla, con `allow` para giroscopio y pantalla completa.
+- **Ambientes:** `assets/ambientes/` son fotos comunes sacadas de las fotos 360 del rodaje
+  del 21/10/2026, una por ambiente. Las 34 fotos de antes quedan en "Ver mas fotos" y se
+  bajan recien al abrirlo.
+- **Reserva:** el formulario arma el mensaje y abre WhatsApp. El Google Calendar se carga al
+  tocarlo. El Google Form de antes (la planilla de solicitudes) sigue como link.
+- **Estilos:** Tailwind compilado en `assets/estilos.css` (antes `cdn.tailwindcss.com`).
+  Despues de cambiar clases en `index.html` o `script.js`, desde la raiz:
+  `npx tailwindcss@3.4.17 -c herramientas/tailwind.config.js -i herramientas/entrada.css -o assets/estilos.css --minify`
+- **Analytics:** GA4 se carga solo en `elsandu.pages.dev` / `elsandu.com` y despues de la
+  carga; las vistas previas no ensucian las metricas.
+- Antes de pasar a `main`: sacar el aviso "Vista previa" de Tarifas y cargar las tarifas
+  2026-2027.
+
+## Galeria: como funciona (version publicada)
 
 Es la parte delicada del sitio. La grilla muestra **miniaturas**
 (`assets/Fotos/thumbs/`, ~1 MB en total) y la foto grande
