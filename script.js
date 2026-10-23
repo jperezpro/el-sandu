@@ -1,5 +1,5 @@
-// El Sandú: menú, video del inicio, tour 360, galería con lightbox, calendario y consulta por WhatsApp.
-// Todo lo pesado (video, tour, calendario, fotos viejas) se carga recién cuando hace falta.
+// El Sandú: menú, video del dron, tour 360, galería con lightbox y consulta por WhatsApp.
+// Lo pesado (el video y el tour) se carga recién cuando lo piden.
 (function () {
     var WHATSAPP = '59899204321';
     var PRODUCCION = ['elsandu.pages.dev', 'elsandu.com', 'www.elsandu.com'];
@@ -10,29 +10,34 @@
     botonMenu.addEventListener('click', function () {
         var abierto = menu.classList.toggle('hidden') === false;
         botonMenu.setAttribute('aria-expanded', String(abierto));
+        header.classList.toggle('abierto', abierto);
     });
     menu.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () { menu.classList.add('hidden'); });
+        a.addEventListener('click', function () { menu.classList.add('hidden'); header.classList.remove('abierto'); });
     });
 
-    // El encabezado es transparente sobre el video y se pone blanco al bajar.
+    // El encabezado es transparente sobre la foto del inicio y se vuelve sólido al bajar.
     var header = document.getElementById('header');
     function encabezado() { header.classList.toggle('solido', window.scrollY > 40); }
     window.addEventListener('scroll', encabezado, { passive: true });
     encabezado();
 
-    // Video del dron: el vertical en el celular parado, el horizontal en la PC. Arranca después de
-    // que cargó la página, para no competir con la portada; con "ahorro de datos" no se baja.
-    window.addEventListener('load', function () {
-        var video = document.getElementById('video-inicio');
-        var ahorro = navigator.connection && navigator.connection.saveData;
-        if (!video || ahorro) return;
-        var vertical = window.matchMedia('(orientation: portrait)').matches;
-        video.src = 'assets/inicio/' + (vertical ? 'dron-celu.mp4' : 'dron-pc.mp4');
-        video.addEventListener('playing', function () { video.classList.remove('opacity-0'); }, { once: true });
+    // Video del dron, en buena calidad (7-9 MB): se baja solo si lo abren.
+    var modal = document.getElementById('video-modal');
+    var video = document.getElementById('video-dron');
+    document.getElementById('ver-video').addEventListener('click', function () {
+        if (!video.src) {
+            var vertical = window.matchMedia('(orientation: portrait)').matches;
+            video.src = 'assets/inicio/' + (vertical ? 'dron-celu.mp4' : 'dron-pc.mp4');
+        }
+        modal.classList.add('active');
         var intento = video.play();
         if (intento && intento.catch) intento.catch(function () {});
+        if (window.gtag) gtag('event', 'ver_video_dron');
     });
+    function cerrarVideo() { modal.classList.remove('active'); video.pause(); }
+    document.getElementById('video-cerrar').addEventListener('click', cerrarVideo);
+    modal.addEventListener('click', function (e) { if (e.target === modal) cerrarVideo(); });
 
     // Tour 360: la portada se cambia por el tour al tocarla. El giroscopio y la pantalla completa
     // necesitan permiso explícito en el iframe.
@@ -48,38 +53,26 @@
         if (window.gtag) gtag('event', 'abrir_tour');
     });
 
-    // Fotos viejas: se bajan recién al tocar "Ver más fotos".
-    var verMas = document.getElementById('ver-mas');
-    var masFotos = document.getElementById('mas-fotos');
-    verMas.addEventListener('click', function () {
-        masFotos.querySelectorAll('img[data-src]').forEach(function (img) {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-        });
-        masFotos.classList.remove('hidden');
-        verMas.remove();
-    });
-
-    // Lightbox para las dos galerías: la foto grande se baja al abrirla, más sus dos vecinas.
-    var fotos = Array.prototype.slice.call(document.querySelectorAll('.foto'));
+    // Lightbox: la foto grande se baja al abrirla, más sus dos vecinas.
+    var fotos = Array.prototype.slice.call(document.querySelectorAll('#galeria .foto'));
     var lightbox = document.getElementById('lightbox');
     var imagen = document.getElementById('lightbox-imagen');
     var texto = document.getElementById('lightbox-texto');
     var actual = 0;
-    function visibles() { return fotos.filter(function (f) { return f.offsetParent !== null; }); }
     function mostrar(i) {
-        var lista = visibles();
-        actual = (i + lista.length) % lista.length;
-        var f = lista[actual];
+        actual = (i + fotos.length) % fotos.length;
+        var f = fotos[actual];
         imagen.src = f.dataset.full;
-        imagen.alt = (f.querySelector('img') || f).alt || '';
-        texto.textContent = f.dataset.texto || '';
-        [actual - 1, actual + 1].forEach(function (j) { new Image().src = lista[(j + lista.length) % lista.length].dataset.full; });
+        imagen.alt = f.querySelector('img').alt;
+        texto.textContent = f.dataset.texto;
+        [actual - 1, actual + 1].forEach(function (j) { new Image().src = fotos[(j + fotos.length) % fotos.length].dataset.full; });
     }
-    fotos.forEach(function (f) {
+    function abrir(i) { mostrar(i); lightbox.classList.add('active'); }
+    fotos.forEach(function (f, i) { f.addEventListener('click', function () { abrir(i); }); });
+    // Las fotos grandes de "La casa" abren el mismo ambiente en el lightbox.
+    document.querySelectorAll('#espacios .foto').forEach(function (f) {
         f.addEventListener('click', function () {
-            mostrar(visibles().indexOf(f));
-            lightbox.classList.add('active');
+            abrir(fotos.findIndex(function (g) { return g.dataset.full === f.dataset.full; }));
         });
     });
     function cerrar() { lightbox.classList.remove('active'); }
@@ -88,29 +81,18 @@
     document.getElementById('lightbox-siguiente').addEventListener('click', function () { mostrar(actual + 1); });
     lightbox.addEventListener('click', function (e) { if (e.target === lightbox) cerrar(); });
     document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { cerrar(); cerrarVideo(); }
         if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') cerrar();
         if (e.key === 'ArrowLeft') mostrar(actual - 1);
         if (e.key === 'ArrowRight') mostrar(actual + 1);
     });
-    // Deslizar con el dedo en el celular
-    var x0 = null;
+    var x0 = null;  // deslizar con el dedo
     lightbox.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
     lightbox.addEventListener('touchend', function (e) {
         if (x0 === null) return;
         var dx = e.changedTouches[0].clientX - x0;
         if (Math.abs(dx) > 50) mostrar(actual + (dx < 0 ? 1 : -1));
         x0 = null;
-    });
-
-    // Calendario de disponibilidad (Google Calendar público de la casa), al tocarlo.
-    document.getElementById('ver-calendario').addEventListener('click', function () {
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://calendar.google.com/calendar/embed?height=420&wkst=2&hl=es&ctz=America%2FMontevideo&showPrint=0&showCalendars=0&title=Disponibilidad&showTitle=0&showTabs=0&src=ZWxzYW5kdXNhbnRhYW5hQGdtYWlsLmNvbQ&src=ZXMtNDE5LnV5I2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039be5&color=%230b8043';
-        iframe.title = 'Calendario de disponibilidad de El Sandú';
-        iframe.className = 'w-full border-0';
-        iframe.height = 420;
-        document.getElementById('calendario').replaceChildren(iframe);
     });
 
     // Consulta: arma el mensaje y abre WhatsApp con él escrito.
@@ -129,9 +111,16 @@
         if (window.gtag) gtag('event', 'consulta_whatsapp');
         window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank', 'noopener');
     });
-    // La salida no puede ser antes de la llegada.
     consulta.llegada.addEventListener('change', function () { consulta.salida.min = consulta.llegada.value; });
     consulta.llegada.min = consulta.salida.min = new Date().toISOString().slice(0, 10);
+
+    // La barra de WhatsApp del celular se esconde mientras se ve el formulario (ya tiene su botón).
+    var barra = document.getElementById('whatsapp-barra');
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entradas) {
+            barra.classList.toggle('oculta', entradas[0].isIntersecting);
+        }, { threshold: 0.15 }).observe(document.getElementById('reservar'));
+    }
 
     // Google Analytics solo en el sitio publicado (no en las vistas previas), y después de cargar.
     if (PRODUCCION.indexOf(location.hostname) >= 0) {

@@ -5,31 +5,60 @@
 @tailwind components;
 @tailwind utilities;
 
-body { font-family: 'Montserrat', sans-serif; background-color: #FDFBF8; color: #4A4A4A; }
-h1, h2, h3, .font-serif { font-family: 'Lora', serif; }
+/* Paleta: arena #F6F1EA, verde #0f3d3e, tinta #1f2a2b, texto #4b5758, línea #e3dbcf. */
+body { font-family: 'Inter', system-ui, sans-serif; background-color: #F6F1EA; color: #4b5758; }
+h1, h2, h3, .font-serif { font-family: 'Lora', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; }
 
-#header { color: #fff; }
-#header.solido { background: rgba(255, 255, 255, .92); color: #374151; box-shadow: 0 1px 8px rgba(0, 0, 0, .08); backdrop-filter: blur(8px); }
+/* Rótulo chico en mayúsculas espaciadas, encima de cada título */
+.etiqueta { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 500; color: #8a6a4a; }
+.text-white\/85.etiqueta, #inicio .etiqueta { color: rgba(255, 255, 255, .85); }
 
-.btn-primary { background-color: #005A5B; color: #fff; transition: background-color .3s, transform .2s; }
-.btn-primary:hover { background-color: #004445; transform: translateY(-2px); }
-.btn-secondary { background-color: #EAE5DD; color: #005A5B; border: 1px solid #005A5B; transition: background-color .3s, color .3s; }
-.btn-secondary:hover { background-color: #005A5B; color: #fff; }
+/* Números de la casa, separados por una línea fina */
+.dato { padding-left: 1.25rem; border-left: 1px solid #e3dbcf; color: #1f2a2b; }
+.dato dt { color: #8a6a4a; }
 
-.pulso { animation: pulso 2s infinite; }
-@keyframes pulso { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, .6); } 50% { box-shadow: 0 0 0 16px rgba(255, 255, 255, 0); } }
+/* Listas de comodidades y condiciones: texto con una línea fina abajo, sin íconos */
+.item { display: flex; gap: .9rem; align-items: baseline; padding: .9rem 0; border-bottom: 1px solid #e3dbcf; }
+.item::before { content: ''; flex: none; width: .45rem; height: .45rem; border-radius: 50%; background: #0f3d3e; transform: translateY(-.1rem); }
 
-.lightbox { display: none; position: fixed; z-index: 1000; inset: 0; background-color: rgba(0, 0, 0, .9); justify-content: center; align-items: center; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 92vw; max-height: 80vh; border-radius: 6px; }
-.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, .35); color: #fff;
-                border: none; font-size: 2.75rem; line-height: 1; padding: .4rem 1.1rem; cursor: pointer; border-radius: 8px; }
-.lightbox-nav:hover { background-color: rgba(0, 0, 0, .6); }
-.lightbox-prev { left: 12px; }
-.lightbox-next { right: 12px; }
-
+/* Preguntas frecuentes */
+.mas { font-size: 1.75rem; line-height: 1; font-weight: 300; color: #8a6a4a; transition: transform .3s; }
+details[open] .mas { transform: rotate(45deg); }
 summary::-webkit-details-marker { display: none; }
 
-.whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 24px; right: 24px; background-color: #25d366; color: #fff;
-                  border-radius: 50%; z-index: 100; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, .25); }
-.whatsapp-float:hover { background-color: #128C7E; }
+/* Formulario */
+.campo { display: block; font-size: .875rem; font-weight: 500; color: #1f2a2b; }
+.campo input, .campo select, .campo textarea { display: block; width: 100%; margin-top: .4rem; padding: .85rem 1rem; border: 1px solid #d8cfc2;
+                                               border-radius: .75rem; background: #fff; font-weight: 400; color: #1f2a2b; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { outline: 2px solid #0f3d3e; outline-offset: 1px; border-color: transparent; }
+
+/* Encabezado: transparente sobre la foto del inicio, sólido al bajar o con el menú abierto */
+#header { color: #fff; }
+#header.solido, #header.abierto { background: rgba(246, 241, 234, .94); color: #1f2a2b; box-shadow: 0 1px 0 #e3dbcf; backdrop-filter: blur(10px); }
+.enlace { position: relative; }
+.enlace::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: currentColor; transform: scaleX(0); transition: transform .25s; }
+.enlace:hover::after { transform: scaleX(1); }
+
+.btn-primary { background-color: #0f3d3e; color: #fff; transition: background-color .3s; }
+.btn-primary:hover { background-color: #0a2c2d; }
+#header:not(.solido):not(.abierto) .btn-primary { background: #fff; color: #0f3d3e; }
+
+.pulso { animation: pulso 2.4s infinite; }
+@keyframes pulso { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, .55); } 50% { box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); } }
+
+/* Lightbox de fotos y ventana del video */
+.lightbox { display: none; position: fixed; z-index: 1000; inset: 0; background-color: rgba(10, 20, 20, .94); justify-content: center; align-items: center; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92vw; max-height: 78vh; border-radius: 8px; }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; border: 1px solid rgba(255, 255, 255, .35);
+                border-radius: 999px; width: 3rem; height: 3rem; font-size: 2rem; line-height: 1; background: rgba(0, 0, 0, .25); cursor: pointer; }
+.lightbox-nav:hover { background: rgba(255, 255, 255, .12); }
+.lightbox-prev { left: 14px; }
+.lightbox-next { right: 14px; }
+
+/* WhatsApp: botón redondo en la PC; en el celular, barra fija abajo */
+.whatsapp-float { position: fixed; width: 58px; height: 58px; bottom: 24px; right: 24px; background-color: #25d366; color: #fff;
+                  border-radius: 50%; z-index: 100; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0, 0, 0, .2); }
+.whatsapp-float:hover { background-color: #1ebe5a; }
+#whatsapp-barra { transition: transform .3s, opacity .3s; }
+#whatsapp-barra.oculta { transform: translateY(140%); opacity: 0; }

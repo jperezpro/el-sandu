@@ -8,12 +8,12 @@
     <link rel="icon" href="assets/ElSanduIcon.webp" type="image/webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/estilos.css">
-    <link rel="preload" as="image" href="assets/inicio/portada-celu.webp" media="(orientation: portrait)">
-    <link rel="preload" as="image" href="assets/inicio/portada-pc.webp" media="(orientation: landscape)">
+    <link rel="preload" as="image" href="assets/inicio/portada-celu.webp" media="(max-width: 767px)">
+    <link rel="preload" as="image" href="assets/inicio/portada-pc.webp" media="(min-width: 768px)">
 
-    <meta name="description" content="El Sandú: casa para 6 personas a media cuadra de la playa en Santa Ana, Canelones. Recorrela por dentro con el tour virtual 360, mirá la disponibilidad y consultá por WhatsApp.">
+    <meta name="description" content="El Sandú: casa para 6 personas a media cuadra de la playa en Santa Ana, Canelones. Recorrela por dentro con el tour virtual 360 y consultá tus fechas por WhatsApp.">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsandu.pages.dev/">
@@ -72,24 +72,22 @@
 <body class="antialiased">
 
     <header id="header" class="fixed inset-x-0 top-0 z-50 transition-colors duration-300">
-        <nav class="container mx-auto px-5 py-3 flex justify-between items-center">
-            <a href="#inicio" class="text-2xl font-serif font-semibold">El Sandú</a>
-            <div class="hidden md:flex gap-6 items-center text-sm font-medium">
-                <a href="#tour" class="hover:opacity-70">Tour 360</a>
-                <a href="#ambientes" class="hover:opacity-70">Ambientes</a>
-                <a href="#comodidades" class="hover:opacity-70">Comodidades</a>
-                <a href="#ubicacion" class="hover:opacity-70">Ubicación</a>
-                <a href="#tarifas" class="hover:opacity-70">Tarifas</a>
-                <a href="#reservar" class="px-5 py-2 rounded-full btn-primary">Consultar fechas</a>
+        <nav class="max-w-6xl mx-auto px-5 h-16 flex justify-between items-center">
+            <a href="#inicio" class="font-serif text-2xl tracking-wide">El Sandú</a>
+            <div class="hidden md:flex gap-8 items-center text-[15px]">
+                <a href="#tour" class="enlace">Tour 360</a>
+                <a href="#espacios" class="enlace">La casa</a>
+                <a href="#ubicacion" class="enlace">Ubicación</a>
+                <a href="#tarifas" class="enlace">Tarifas</a>
+                <a href="#reservar" class="px-5 py-2.5 rounded-full btn-primary">Consultar fechas</a>
             </div>
             <button id="boton-menu" class="md:hidden p-1" aria-label="Abrir menú" aria-expanded="false">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M4 8h16M4 16h16"/></svg>
             </button>
         </nav>
-        <div id="menu" class="hidden md:hidden bg-white text-gray-700 px-5 pb-5 pt-2 space-y-3 shadow-lg">
+        <div id="menu" class="hidden md:hidden bg-[#F6F1EA] text-[#1f2a2b] px-5 pb-6 pt-2 space-y-4 text-lg">
             <a href="#tour" class="block">Tour 360</a>
-            <a href="#ambientes" class="block">Ambientes</a>
-            <a href="#comodidades" class="block">Comodidades</a>
+            <a href="#espacios" class="block">La casa</a>
             <a href="#ubicacion" class="block">Ubicación</a>
             <a href="#tarifas" class="block">Tarifas</a>
             <a href="#reservar" class="block text-center px-5 py-3 rounded-full btn-primary">Consultar fechas</a>
@@ -97,159 +95,156 @@
     </header>
 
     <main>
-        <!-- Inicio: video del dron (vertical en el celular, horizontal en la PC) sobre su portada. -->
-        <section id="inicio" class="relative h-[100svh] min-h-[560px] overflow-hidden text-white">
-            <picture>
-                <source media="(orientation: portrait)" srcset="assets/inicio/portada-celu.webp">
-                <img src="assets/inicio/portada-pc.webp" alt="Vista aérea de El Sandú en Santa Ana, con el mar de fondo" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
-            </picture>
-            <video id="video-inicio" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000" muted loop playsinline preload="none" aria-hidden="true"></video>
-            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/70"></div>
-            <div class="relative h-full container mx-auto px-5 flex flex-col justify-end pb-16 md:pb-24">
-                <p class="uppercase tracking-[.25em] text-xs md:text-sm mb-3 opacity-90">Santa Ana · Canelones · Uruguay</p>
-                <h1 class="font-serif text-4xl md:text-6xl leading-tight max-w-3xl">Una casa entre los árboles, a media cuadra del mar.</h1>
-                <p class="mt-4 text-lg md:text-xl max-w-2xl opacity-95">Para 6 personas, con barbacoa, estufa a leña y lugar para tus mascotas.</p>
-                <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                    <a href="#tour" class="inline-flex justify-center items-center gap-2 px-7 py-4 rounded-full bg-white text-[#0f3d3e] font-semibold hover:bg-white/90">
-                        <span aria-hidden="true">◉</span> Recorrer la casa en 360°
-                    </a>
-                    <a href="#reservar" class="inline-flex justify-center items-center px-7 py-4 rounded-full btn-primary font-semibold">Consultar fechas</a>
+        <!-- Inicio: foto del dron (la casa con el mar atrás). El video se abre solo si lo piden. -->
+        <section id="inicio">
+            <div class="relative aspect-[4/5] md:aspect-auto md:h-[100svh] md:min-h-[620px] overflow-hidden text-white">
+                <picture>
+                    <source media="(max-width: 767px)" srcset="assets/inicio/portada-celu.webp">
+                    <img src="assets/inicio/portada-pc.webp" alt="El Sandú desde el aire, con el mar de fondo" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
+                </picture>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/35"></div>
+                <div class="absolute inset-x-0 bottom-0">
+                    <div class="max-w-6xl mx-auto px-5 pb-8 md:pb-20">
+                        <p class="etiqueta text-white/85 mb-4">Santa Ana · Canelones · Uruguay</p>
+                        <h1 class="font-serif text-[2.4rem] md:text-7xl leading-[1.05] max-w-3xl">Entre los árboles, a media cuadra del mar.</h1>
+                        <p class="hidden md:block mt-6 text-xl max-w-xl text-white/90">Una casa para seis, con barbacoa, estufa a leña y lugar para tus mascotas.</p>
+                        <div class="hidden md:flex mt-10 gap-3">
+                            <a href="#tour" class="px-7 py-4 rounded-full bg-white text-[#0f3d3e] font-medium hover:bg-white/90">Recorrer la casa en 360°</a>
+                            <a href="#reservar" class="px-7 py-4 rounded-full border border-white/70 hover:bg-white/10">Consultar fechas</a>
+                        </div>
+                        <button id="ver-video" class="mt-6 md:mt-8 inline-flex items-center gap-3 text-sm md:text-base text-white/90 hover:text-white">
+                            <span class="w-10 h-10 rounded-full border border-white/70 grid place-items-center" aria-hidden="true"><svg viewBox="0 0 24 24" class="w-4 h-4 ml-0.5" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                            Ver la casa desde el aire
+                        </button>
+                    </div>
                 </div>
+            </div>
+            <div class="md:hidden px-5 pt-6 pb-2 bg-[#F6F1EA]">
+                <p class="text-lg text-[#3d4a4b]">Una casa para seis, con barbacoa, estufa a leña y lugar para tus mascotas.</p>
+                <a href="#tour" class="mt-5 block text-center px-6 py-4 rounded-full btn-primary">Recorrer la casa en 360°</a>
             </div>
         </section>
 
-        <!-- Lo principal, de un vistazo -->
-        <section class="bg-white border-b border-gray-100">
-            <ul class="container mx-auto px-5 py-6 grid grid-cols-2 md:grid-cols-6 gap-4 text-center text-sm text-gray-700">
-                <li><span class="block text-2xl mb-1" aria-hidden="true">👥</span>6 personas</li>
-                <li><span class="block text-2xl mb-1" aria-hidden="true">🛏️</span>2 dormitorios</li>
-                <li><span class="block text-2xl mb-1" aria-hidden="true">🛁</span>2 baños</li>
-                <li><span class="block text-2xl mb-1" aria-hidden="true">🌊</span>A media cuadra del mar</li>
-                <li><span class="block text-2xl mb-1" aria-hidden="true">🔥</span>Barbacoa con parrilla</li>
-                <li><span class="block text-2xl mb-1" aria-hidden="true">🐾</span>Mascotas bienvenidas</li>
-            </ul>
+        <!-- Los números de la casa -->
+        <section class="bg-[#F6F1EA]">
+            <dl class="max-w-6xl mx-auto px-5 py-10 md:py-14 grid grid-cols-2 md:grid-cols-4 gap-y-8 border-b border-[#e3dbcf]">
+                <div class="dato"><dt class="etiqueta">Huéspedes</dt><dd class="font-serif text-4xl md:text-5xl mt-2">6</dd></div>
+                <div class="dato"><dt class="etiqueta">Dormitorios</dt><dd class="font-serif text-4xl md:text-5xl mt-2">2</dd></div>
+                <div class="dato"><dt class="etiqueta">Baños</dt><dd class="font-serif text-4xl md:text-5xl mt-2">2</dd></div>
+                <div class="dato"><dt class="etiqueta">A la playa</dt><dd class="font-serif text-4xl md:text-5xl mt-2">½ <span class="text-2xl md:text-3xl">cuadra</span></dd></div>
+            </dl>
         </section>
 
-        <!-- Tour 360: se carga recién cuando lo abren, así no pesa en la página. -->
-        <section id="tour" class="py-16 md:py-24 bg-[#0f3d3e] text-white">
-            <div class="container mx-auto px-5">
-                <div class="max-w-2xl mb-8">
-                    <p class="uppercase tracking-[.25em] text-xs text-[#9fd3c7] mb-3">Tour virtual 360°</p>
-                    <h2 class="font-serif text-3xl md:text-5xl leading-tight">Recorré la casa antes de reservar</h2>
-                    <p class="mt-4 text-white/80">Movete por los 13 ambientes como si estuvieras ahí: el living con la estufa, la cocina, la barbacoa, los dormitorios y la terraza.</p>
+        <!-- Tour 360: se carga recién cuando lo abren. -->
+        <section id="tour" class="py-20 md:py-28 bg-[#0f3d3e] text-white">
+            <div class="max-w-6xl mx-auto px-5">
+                <div class="md:flex md:items-end md:justify-between gap-10 mb-10">
+                    <div class="max-w-2xl">
+                        <p class="etiqueta text-[#9fd3c7] mb-4">Tour virtual 360°</p>
+                        <h2 class="font-serif text-4xl md:text-6xl leading-tight">Recorrela antes de venir</h2>
+                    </div>
+                    <p class="mt-5 md:mt-0 max-w-sm text-white/75">Los 13 ambientes, como si estuvieras ahí. Tocá las flechas para pasar de uno a otro.</p>
                 </div>
-                <div id="tour-marco" class="relative aspect-[4/5] md:aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl bg-black">
+                <div id="tour-marco" class="relative aspect-[4/5] md:aspect-[16/9] rounded-2xl overflow-hidden bg-black">
                     <button id="tour-abrir" class="group absolute inset-0 w-full h-full" aria-label="Entrar al tour virtual 360 de El Sandú">
-                        <img src="assets/ambientes/living.webp" alt="Living de El Sandú con la estufa a leña" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <span class="absolute inset-0 bg-black/35"></span>
-                        <span class="relative flex flex-col items-center gap-4">
-                            <span class="w-20 h-20 rounded-full bg-white/95 text-[#0f3d3e] grid place-items-center shadow-xl pulso" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" class="w-9 h-9 ml-1" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                            </span>
-                            <span class="px-5 py-2 rounded-full bg-black/55 text-lg font-semibold">Entrar al tour 360°</span>
+                        <img src="assets/ambientes/living.webp" alt="Living de El Sandú con la estufa a leña" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105">
+                        <span class="absolute inset-0 bg-black/30"></span>
+                        <span class="relative inline-flex items-center gap-4 px-7 py-4 rounded-full bg-white text-[#0f3d3e] font-medium text-lg shadow-2xl pulso">
+                            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                            Entrar al tour
                         </span>
                     </button>
                 </div>
-                <p class="mt-4 text-sm text-white/70">
-                    Tocá las flechas para pasar de un ambiente a otro.
-                    <a href="https://tours.tourvirtual360.pro/el-sandu/" target="_blank" rel="noopener" class="underline hover:text-white">Abrir en pantalla completa</a>
-                </p>
+                <p class="mt-4 text-sm text-white/60"><a href="https://tours.tourvirtual360.pro/el-sandu/" target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-white">Abrir el tour en pantalla completa</a></p>
             </div>
         </section>
 
-        <!-- Ambientes: fotos sacadas del rodaje 360; abajo, las fotos de siempre. -->
-        <section id="ambientes" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-5">
-                <h2 class="font-serif text-3xl md:text-5xl text-gray-800 mb-3">Los ambientes</h2>
-                <p class="text-gray-600 mb-10 max-w-2xl">Tocá una foto para verla grande.</p>
-                <div id="grilla-ambientes" class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/exterior.webp" data-texto="Exterior">
-                        <img src="assets/ambientes/thumbs/exterior.webp" alt="Frente de la casa en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Exterior</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/living.webp" data-texto="Living">
-                        <img src="assets/ambientes/thumbs/living.webp" alt="Living con estufa a leña en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Living</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/cocina.webp" data-texto="Cocina">
-                        <img src="assets/ambientes/thumbs/cocina.webp" alt="Cocina con barra al living en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Cocina</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/barbacoa.webp" data-texto="Barbacoa">
-                        <img src="assets/ambientes/thumbs/barbacoa.webp" alt="Barbacoa cerrada con mesa larga en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Barbacoa</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/parrillero.webp" data-texto="Parrillero">
-                        <img src="assets/ambientes/thumbs/parrillero.webp" alt="Parrilla de la barbacoa en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Parrillero</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/dormitorio.webp" data-texto="Dormitorio principal">
-                        <img src="assets/ambientes/thumbs/dormitorio.webp" alt="Dormitorio con cama de dos plazas y baño en suite en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Dormitorio principal</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/dormitorio-camas.webp" data-texto="Dormitorio de 4 camas">
-                        <img src="assets/ambientes/thumbs/dormitorio-camas.webp" alt="Dormitorio con cuatro sommiers de una plaza en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Dormitorio de 4 camas</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/bano-suite.webp" data-texto="Baño en suite">
-                        <img src="assets/ambientes/thumbs/bano-suite.webp" alt="Baño del dormitorio principal en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Baño en suite</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/bano.webp" data-texto="Baño">
-                        <img src="assets/ambientes/thumbs/bano.webp" alt="Baño de planta baja en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Baño</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/terraza.webp" data-texto="Terraza">
-                        <img src="assets/ambientes/thumbs/terraza.webp" alt="Terraza de planta alta en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Terraza</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/jardin.webp" data-texto="Jardín">
-                        <img src="assets/ambientes/thumbs/jardin.webp" alt="Jardín al costado de la barbacoa en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Jardín</figcaption>
-                    </figure>
-                    <figure class="foto group relative rounded-xl overflow-hidden cursor-pointer" data-full="assets/ambientes/patio.webp" data-texto="Patio">
-                        <img src="assets/ambientes/thumbs/patio.webp" alt="Patio con reposeras en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-500 group-hover:scale-105">
-                        <figcaption class="absolute inset-x-0 bottom-0 px-3 py-2 text-sm font-medium text-white bg-gradient-to-t from-black/70">Patio</figcaption>
-                    </figure>
+        <!-- La casa, contada con fotos -->
+        <section id="espacios" class="py-20 md:py-28 bg-[#F6F1EA]">
+            <div class="max-w-6xl mx-auto px-5 space-y-20 md:space-y-28">
+                <article class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+                    <img src="assets/ambientes/living.webp" alt="Living con estufa a leña y sillones de cuero" loading="lazy" decoding="async" class="foto md:col-span-7 w-full aspect-[4/3] object-cover rounded-2xl cursor-pointer" data-full="assets/ambientes/living.webp" data-texto="Living">
+                    <div class="md:col-span-5">
+                        <p class="etiqueta mb-4">Planta baja</p>
+                        <h3 class="font-serif text-3xl md:text-4xl text-[#1f2a2b] mb-5">Un living para quedarse</h3>
+                        <p class="text-[#4b5758] leading-relaxed">Estufa a leña, sillones de cuero y la cocina integrada con barra. En invierno es el mejor lugar de la casa; en verano, con el aire acondicionado, también.</p>
+                    </div>
+                </article>
+                <article class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+                    <img src="assets/ambientes/barbacoa.webp" alt="Barbacoa vidriada con mesa larga" loading="lazy" decoding="async" class="foto md:col-span-7 md:order-2 w-full aspect-[4/3] object-cover rounded-2xl cursor-pointer" data-full="assets/ambientes/barbacoa.webp" data-texto="Barbacoa">
+                    <div class="md:col-span-5 md:order-1">
+                        <p class="etiqueta mb-4">Barbacoa</p>
+                        <h3 class="font-serif text-3xl md:text-4xl text-[#1f2a2b] mb-5">El asado, llueva o truene</h3>
+                        <p class="text-[#4b5758] leading-relaxed">Cerrada y vidriada, con una mesa larga para todos y la parrilla al fondo. Se abre al jardín y al frente de la casa.</p>
+                    </div>
+                </article>
+                <article class="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+                    <img src="assets/ambientes/dormitorio.webp" alt="Dormitorio principal con cama de dos plazas" loading="lazy" decoding="async" class="foto md:col-span-7 w-full aspect-[4/3] object-cover rounded-2xl cursor-pointer" data-full="assets/ambientes/dormitorio.webp" data-texto="Dormitorio principal">
+                    <div class="md:col-span-5">
+                        <p class="etiqueta mb-4">Planta alta</p>
+                        <h3 class="font-serif text-3xl md:text-4xl text-[#1f2a2b] mb-5">Arriba, a descansar</h3>
+                        <p class="text-[#4b5758] leading-relaxed">Un dormitorio con cama de dos plazas, baño en suite y salida a la terraza, y otro con cuatro sommiers de una plaza. Abajo hay un segundo baño.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Todos los ambientes -->
+        <section id="galeria" class="pb-20 md:pb-28 bg-[#F6F1EA]">
+            <div class="max-w-6xl mx-auto px-5">
+                <div class="flex items-end justify-between mb-8 border-t border-[#e3dbcf] pt-14">
+                    <h2 class="font-serif text-4xl md:text-5xl text-[#1f2a2b]">Cada ambiente</h2>
+                    <p class="hidden md:block text-[#4b5758]">Tocá una foto para verla grande.</p>
                 </div>
-                <div class="mt-10 text-center">
-                    <button id="ver-mas" class="px-6 py-3 rounded-full btn-secondary font-semibold" aria-expanded="false">Ver más fotos (34)</button>
-                </div>
-                <div id="mas-fotos" class="hidden mt-8 grid grid-cols-3 md:grid-cols-6 gap-2">
-                    <img data-full="assets/Fotos/FFR00030.webp" data-src="assets/Fotos/thumbs/FFR00030.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00036.webp" data-src="assets/Fotos/thumbs/FFR00036.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00037.webp" data-src="assets/Fotos/thumbs/FFR00037.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00040.webp" data-src="assets/Fotos/thumbs/FFR00040.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00053.webp" data-src="assets/Fotos/thumbs/FFR00053.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00074.webp" data-src="assets/Fotos/thumbs/FFR00074.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00075.webp" data-src="assets/Fotos/thumbs/FFR00075.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00076.webp" data-src="assets/Fotos/thumbs/FFR00076.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00078.webp" data-src="assets/Fotos/thumbs/FFR00078.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00080.webp" data-src="assets/Fotos/thumbs/FFR00080.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00084.webp" data-src="assets/Fotos/thumbs/FFR00084.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00085.webp" data-src="assets/Fotos/thumbs/FFR00085.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00093.webp" data-src="assets/Fotos/thumbs/FFR00093.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00094.webp" data-src="assets/Fotos/thumbs/FFR00094.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00098.webp" data-src="assets/Fotos/thumbs/FFR00098.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00102.webp" data-src="assets/Fotos/thumbs/FFR00102.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00107.webp" data-src="assets/Fotos/thumbs/FFR00107.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00111.webp" data-src="assets/Fotos/thumbs/FFR00111.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00112.webp" data-src="assets/Fotos/thumbs/FFR00112.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR00114.webp" data-src="assets/Fotos/thumbs/FFR00114.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR0101.webp" data-src="assets/Fotos/thumbs/FFR0101.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR07660.webp" data-src="assets/Fotos/thumbs/FFR07660.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/FFR07666.webp" data-src="assets/Fotos/thumbs/FFR07666.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.19 PM (1).webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.19 PM (1).webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.19 PM (2).webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.19 PM (2).webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.19 PM (3).webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.19 PM (3).webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.19 PM.webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.19 PM.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM (1).webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM (1).webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM (2).webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM (2).webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM (3).webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM (3).webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM (4).webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM (4).webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.20 PM.webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.20 PM.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.21 PM (1).webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.21 PM (1).webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
-                    <img data-full="assets/Fotos/WhatsApp Image 2025-12-29 at 8.34.21 PM.webp" data-src="assets/Fotos/thumbs/WhatsApp Image 2025-12-29 at 8.34.21 PM.webp" alt="Casa El Sandú en Santa Ana" class="foto aspect-square w-full object-cover rounded-lg cursor-pointer">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/exterior.webp" data-texto="Exterior">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/exterior.webp" alt="Frente de la casa en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Exterior</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/living.webp" data-texto="Living">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/living.webp" alt="Living con estufa a leña en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Living</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/cocina.webp" data-texto="Cocina">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/cocina.webp" alt="Cocina con barra al living en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Cocina</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/barbacoa.webp" data-texto="Barbacoa">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/barbacoa.webp" alt="Barbacoa vidriada con mesa larga en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Barbacoa</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/parrillero.webp" data-texto="Parrillero">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/parrillero.webp" alt="Parrilla de la barbacoa en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Parrillero</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/dormitorio.webp" data-texto="Dormitorio principal">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/dormitorio.webp" alt="Dormitorio con cama de dos plazas en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Dormitorio principal</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/dormitorio-camas.webp" data-texto="Dormitorio de 4 camas">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/dormitorio-camas.webp" alt="Dormitorio con cuatro sommiers de una plaza en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Dormitorio de 4 camas</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/bano-suite.webp" data-texto="Baño en suite">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/bano-suite.webp" alt="Baño del dormitorio principal en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Baño en suite</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/bano.webp" data-texto="Baño">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/bano.webp" alt="Baño de planta baja en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Baño</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/terraza.webp" data-texto="Terraza">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/terraza.webp" alt="Terraza de planta alta en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Terraza</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/jardin.webp" data-texto="Jardín">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/jardin.webp" alt="Jardín al costado de la barbacoa en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Jardín</figcaption>
+                    </figure>
+                    <figure class="foto group cursor-pointer" data-full="assets/ambientes/patio.webp" data-texto="Patio">
+                        <div class="overflow-hidden rounded-xl"><img src="assets/ambientes/thumbs/patio.webp" alt="Patio con reposeras en El Sandú" width="600" height="375" loading="lazy" decoding="async" class="w-full aspect-[8/5] object-cover transition-transform duration-700 group-hover:scale-105"></div>
+                        <figcaption class="mt-2 text-[15px] text-[#3d4a4b]">Patio</figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
@@ -259,139 +254,157 @@
             <button id="lightbox-anterior" class="lightbox-nav lightbox-prev" aria-label="Foto anterior">&lsaquo;</button>
             <figure class="flex flex-col items-center">
                 <img id="lightbox-imagen" src="" alt="">
-                <figcaption id="lightbox-texto" class="mt-3 text-white/90 text-sm"></figcaption>
+                <figcaption id="lightbox-texto" class="mt-4 text-white/85 font-serif text-lg"></figcaption>
             </figure>
             <button id="lightbox-siguiente" class="lightbox-nav lightbox-next" aria-label="Foto siguiente">&rsaquo;</button>
         </div>
 
-        <section id="comodidades" class="py-16 md:py-24 bg-[#FDFBF8]">
-            <div class="container mx-auto px-5">
-                <h2 class="font-serif text-3xl md:text-5xl text-gray-800 mb-12">Comodidades</h2>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="p-6 bg-white rounded-2xl shadow-sm"><span class="text-3xl" aria-hidden="true">🛏️</span><h3 class="font-semibold mt-3 mb-1">Para 6 personas</h3><p class="text-gray-600 text-sm">Un dormitorio con cama de dos plazas y otro con cuatro sommiers de una plaza.</p></div>
-                    <div class="p-6 bg-white rounded-2xl shadow-sm"><span class="text-3xl" aria-hidden="true">🛁</span><h3 class="font-semibold mt-3 mb-1">2 baños completos</h3><p class="text-gray-600 text-sm">Uno en planta baja y otro en suite, en el dormitorio principal.</p></div>
-                    <div class="p-6 bg-white rounded-2xl shadow-sm"><span class="text-3xl" aria-hidden="true">🔥</span><h3 class="font-semibold mt-3 mb-1">Barbacoa con parrilla</h3><p class="text-gray-600 text-sm">Cerrada y con mesa larga: el asado se hace llueva o truene.</p></div>
-                    <div class="p-6 bg-white rounded-2xl shadow-sm"><span class="text-3xl" aria-hidden="true">🪵</span><h3 class="font-semibold mt-3 mb-1">Estufa a leña</h3><p class="text-gray-600 text-sm">El living queda cálido también en invierno.</p></div>
-                    <div class="p-6 bg-white rounded-2xl shadow-sm"><span class="text-3xl" aria-hidden="true">🍳</span><h3 class="font-semibold mt-3 mb-1">Cocina equipada</h3><p class="text-gray-600 text-sm">Con barra al living y todo para cocinar.</p></div>
-                    <div class="p-6 bg-white rounded-2xl shadow-sm"><span class="text-3xl" aria-hidden="true">❄️</span><h3 class="font-semibold mt-3 mb-1">Aire acondicionado</h3><p class="text-gray-600 text-sm">Para los días de calor.</p></div>
-                    <div class="p-6 bg-white rounded-2xl shadow-sm"><span class="text-3xl" aria-hidden="true">📶</span><h3 class="font-semibold mt-3 mb-1">WiFi</h3><p class="text-gray-600 text-sm">Conexión en toda la casa.</p></div>
-                    <div class="p-6 bg-white rounded-2xl shadow-sm"><span class="text-3xl" aria-hidden="true">🚗</span><h3 class="font-semibold mt-3 mb-1">Predio cerrado</h3><p class="text-gray-600 text-sm">Lugar para dos autos, terraza y patio.</p></div>
+        <div id="video-modal" class="lightbox" role="dialog" aria-modal="true" aria-label="Video de la casa desde el aire">
+            <button id="video-cerrar" class="absolute top-4 right-5 text-white text-5xl leading-none z-20" aria-label="Cerrar">&times;</button>
+            <video id="video-dron" class="max-w-[94vw] max-h-[86vh] rounded-lg" controls playsinline loop></video>
+        </div>
+
+        <section id="comodidades" class="py-20 md:py-28 bg-white">
+            <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-12 gap-10">
+                <div class="md:col-span-4">
+                    <p class="etiqueta mb-4">Comodidades</p>
+                    <h2 class="font-serif text-4xl md:text-5xl text-[#1f2a2b] leading-tight">Todo lo que tiene la casa</h2>
                 </div>
+                <ul class="md:col-span-8 grid sm:grid-cols-2 gap-x-10 text-[#3d4a4b]">
+                    <li class="item">Estufa a leña en el living</li>
+                    <li class="item">Aire acondicionado</li>
+                    <li class="item">Cocina equipada con barra</li>
+                    <li class="item">WiFi</li>
+                    <li class="item">Barbacoa cerrada con parrilla</li>
+                    <li class="item">Terraza, jardín y patio</li>
+                    <li class="item">Cama de dos plazas y cuatro de una</li>
+                    <li class="item">Frazadas para todas las camas</li>
+                    <li class="item">Predio cerrado, lugar para dos autos</li>
+                    <li class="item">Mascotas bienvenidas</li>
+                </ul>
             </div>
         </section>
 
-        <section id="ubicacion" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-5 grid md:grid-cols-2 gap-10 items-center">
-                <div>
-                    <h2 class="font-serif text-3xl md:text-5xl text-gray-800 mb-5 leading-tight">Donde el bosque se encuentra con el mar</h2>
-                    <p class="text-gray-600 mb-6">Santa Ana es un balneario tranquilo, ideal para desconectar. La casa está a media cuadra de la playa, rodeada de árboles: se va caminando al mar, sin usar el auto.</p>
-                    <img src="assets/inicio/playa.webp" alt="Vista aérea de la costa de Santa Ana, a media cuadra de El Sandú" loading="lazy" decoding="async" class="rounded-2xl shadow-lg w-full max-h-[420px] object-cover">
+        <section id="ubicacion" class="py-20 md:py-28 bg-[#F6F1EA]">
+            <div class="max-w-6xl mx-auto px-5">
+                <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+                    <img src="assets/inicio/playa.webp" alt="La costa de Santa Ana desde el aire, a media cuadra de El Sandú" loading="lazy" decoding="async" class="w-full aspect-[4/5] object-cover rounded-2xl">
+                    <div>
+                        <p class="etiqueta mb-4">Ubicación</p>
+                        <h2 class="font-serif text-4xl md:text-5xl text-[#1f2a2b] leading-tight mb-6">Donde el bosque se encuentra con el mar</h2>
+                        <p class="text-[#4b5758] leading-relaxed mb-8">Santa Ana es un balneario tranquilo de Canelones, ideal para desconectar. A la playa se va caminando, sin usar el auto.</p>
+                        <dl class="divide-y divide-[#e3dbcf] border-y border-[#e3dbcf] text-[#3d4a4b]">
+                            <div class="flex justify-between py-3"><dt>Playa</dt><dd class="text-[#1f2a2b] font-medium">media cuadra</dd></div>
+                            <div class="flex justify-between py-3"><dt>Rotisería Faoma</dt><dd class="text-[#1f2a2b] font-medium">cuadra y media</dd></div>
+                            <div class="flex justify-between py-3"><dt>Panadería (calle 7 y Antúnez)</dt><dd class="text-[#1f2a2b] font-medium">2 cuadras</dd></div>
+                            <div class="flex justify-between py-3"><dt>Parada del 713 de COPSA (calle 8)</dt><dd class="text-[#1f2a2b] font-medium">5 cuadras</dd></div>
+                            <div class="flex justify-between py-3"><dt>Supermercado, carnicería y restaurante</dt><dd class="text-[#1f2a2b] font-medium">9 cuadras</dd></div>
+                        </dl>
+                    </div>
                 </div>
-                <div class="h-[420px] md:h-[560px] rounded-2xl overflow-hidden shadow-xl">
+                <div class="mt-12 h-[360px] md:h-[440px] rounded-2xl overflow-hidden">
                     <iframe title="Ubicación de El Sandú en Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d204.77934097051528!2d-55.47104014684263!3d-34.79412926008976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x957559042b4210ef%3A0xcae90f00b41b6d03!2sEl%20Sandu!5e0!3m2!1ses!2suy!4v1760306464246!5m2!1ses!2suy" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
 
-        <section id="tarifas" class="py-16 md:py-24 bg-[#FDFBF8]">
-            <div class="container mx-auto px-5">
-                <h2 class="font-serif text-3xl md:text-5xl text-gray-800 mb-10">Tarifas y condiciones</h2>
-                <!-- VISTA PREVIA: sacar este aviso cuando Elkis pase las tarifas 2026-2027. -->
-                <p class="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-sm">Vista previa: estas son las tarifas de la temporada 2026. Se actualizan con las de 2026-2027 apenas estén.</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-7 bg-white rounded-2xl shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Temporada de verano</h3>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex justify-between border-b border-gray-100 pb-3"><span>Enero</span><span><b>$24.000</b> por semana <span class="text-gray-500">($3.430 por día)</span></span></li>
-                            <li class="flex justify-between"><span>Febrero</span><span><b>$21.000</b> por semana <span class="text-gray-500">($3.000 por día)</span></span></li>
-                        </ul>
-                        <p class="text-sm text-gray-500 mt-4">La luz se cobra aparte. Precios en pesos uruguayos.</p>
-                    </div>
-                    <div class="p-7 bg-white rounded-2xl shadow-sm">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Condiciones</h3>
-                        <ul class="space-y-3 text-gray-700 list-disc list-inside">
-                            <li>Estadía mínima en temporada alta: <b>5 días</b>.</li>
-                            <li>Seña del <b>50%</b> para confirmar la reserva.</li>
-                            <li>Si se cancela, la seña <b>no se devuelve</b>.</li>
-                            <li>Entrada desde las 15:00 y salida hasta las 11:00.</li>
-                        </ul>
-                    </div>
+        <section id="tarifas" class="py-20 md:py-28 bg-white">
+            <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-12 gap-10">
+                <div class="md:col-span-4">
+                    <p class="etiqueta mb-4">Tarifas</p>
+                    <h2 class="font-serif text-4xl md:text-5xl text-[#1f2a2b] leading-tight">Temporada de verano</h2>
+                </div>
+                <div class="md:col-span-8">
+                    <!-- VISTA PREVIA: sacar este aviso cuando Elkis pase las tarifas 2026-2027. -->
+                    <p class="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-sm">Vista previa: son las tarifas de la temporada 2026. Se cambian por las de 2026-2027 apenas estén.</p>
+                    <dl class="divide-y divide-[#e3dbcf] border-y border-[#e3dbcf]">
+                        <div class="py-5 flex justify-between items-baseline gap-4"><dt class="font-serif text-2xl text-[#1f2a2b]">Enero</dt><dd class="text-right"><span class="text-xl text-[#1f2a2b] font-medium">$24.000</span> <span class="text-[#4b5758]">por semana</span><span class="block text-sm text-[#7b8687]">$3.430 por día</span></dd></div>
+                        <div class="py-5 flex justify-between items-baseline gap-4"><dt class="font-serif text-2xl text-[#1f2a2b]">Febrero</dt><dd class="text-right"><span class="text-xl text-[#1f2a2b] font-medium">$21.000</span> <span class="text-[#4b5758]">por semana</span><span class="block text-sm text-[#7b8687]">$3.000 por día</span></dd></div>
+                    </dl>
+                    <ul class="mt-8 grid sm:grid-cols-2 gap-x-10 text-[#3d4a4b] text-[15px]">
+                        <li class="item">Estadía mínima en temporada alta: 5 días</li>
+                        <li class="item">Seña del 50% para confirmar</li>
+                        <li class="item">Si se cancela, la seña no se devuelve</li>
+                        <li class="item">Entrada desde las 15:00, salida hasta las 11:00</li>
+                        <li class="item">La luz se cobra aparte</li>
+                        <li class="item">Precios en pesos uruguayos</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Reserva: el formulario arma el mensaje de WhatsApp; el calendario se carga al tocarlo. -->
-        <section id="reservar" class="py-16 md:py-24 bg-[#0f3d3e] text-white">
-            <div class="container mx-auto px-5 grid lg:grid-cols-2 gap-10">
-                <div>
-                    <h2 class="font-serif text-3xl md:text-5xl leading-tight mb-4">Consultá tus fechas</h2>
-                    <p class="text-white/80 mb-8">Mirá en el calendario qué días están libres y mandanos tu consulta por WhatsApp. Te respondemos para coordinar la seña.</p>
-                    <div id="calendario" class="rounded-2xl overflow-hidden bg-white text-gray-800">
-                        <button id="ver-calendario" class="w-full p-8 flex flex-col items-center gap-3 hover:bg-gray-50">
-                            <span class="text-4xl" aria-hidden="true">📅</span>
-                            <span class="font-semibold text-lg">Ver el calendario de disponibilidad</span>
-                            <span class="text-sm text-gray-500">Los días marcados ya están reservados</span>
-                        </button>
-                    </div>
+        <!-- Reserva: el formulario arma el mensaje y abre WhatsApp. -->
+        <section id="reservar" class="py-20 md:py-28 bg-[#0f3d3e] text-white">
+            <div class="max-w-6xl mx-auto px-5 grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5">
+                    <p class="etiqueta text-[#9fd3c7] mb-4">Reservas</p>
+                    <h2 class="font-serif text-4xl md:text-6xl leading-tight mb-6">Contanos tus fechas</h2>
+                    <p class="text-white/75 leading-relaxed">Completá los datos y se abre WhatsApp con tu consulta escrita: solo tenés que enviarla. Te confirmamos la disponibilidad y coordinamos la seña.</p>
                 </div>
-                <form id="consulta" class="bg-white text-gray-800 rounded-2xl p-6 md:p-8 shadow-xl grid sm:grid-cols-2 gap-4 self-start">
-                    <label class="sm:col-span-2 text-sm font-medium">Tu nombre
-                        <input name="nombre" required autocomplete="name" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-3">
+                <form id="consulta" class="lg:col-span-7 bg-white text-[#1f2a2b] rounded-2xl p-6 md:p-10 grid sm:grid-cols-2 gap-5">
+                    <label class="sm:col-span-2 campo">Tu nombre
+                        <input name="nombre" required autocomplete="name">
                     </label>
-                    <label class="text-sm font-medium">Llegada
-                        <input name="llegada" type="date" required class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-3">
+                    <label class="campo">Llegada
+                        <input name="llegada" type="date" required>
                     </label>
-                    <label class="text-sm font-medium">Salida
-                        <input name="salida" type="date" required class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-3">
+                    <label class="campo">Salida
+                        <input name="salida" type="date" required>
                     </label>
-                    <label class="text-sm font-medium">Personas
-                        <select name="personas" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-3">
-                            <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option>
-                        </select>
+                    <label class="campo">Personas
+                        <select name="personas"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select>
                     </label>
-                    <label class="text-sm font-medium">Mascotas
-                        <select name="mascotas" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-3">
-                            <option value="">Sin mascotas</option><option value="con mascota">Con mascota</option>
-                        </select>
+                    <label class="campo">Mascotas
+                        <select name="mascotas"><option value="">Sin mascotas</option><option value="con mascota">Con mascota</option></select>
                     </label>
-                    <label class="sm:col-span-2 text-sm font-medium">Algo más que quieras contarnos <span class="text-gray-400">(opcional)</span>
-                        <textarea name="mensaje" rows="3" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-3"></textarea>
+                    <label class="sm:col-span-2 campo">Algo más que quieras contarnos <span class="text-[#7b8687] font-normal">(opcional)</span>
+                        <textarea name="mensaje" rows="3"></textarea>
                     </label>
                     <p id="aviso-fechas" class="sm:col-span-2 hidden text-sm text-red-600">La salida tiene que ser después de la llegada.</p>
-                    <button class="sm:col-span-2 mt-2 inline-flex justify-center items-center gap-2 px-6 py-4 rounded-full bg-[#25d366] hover:bg-[#1ebe5a] text-white font-semibold text-lg">
-                        Consultar por WhatsApp
+                    <button class="sm:col-span-2 mt-2 inline-flex justify-center items-center gap-3 px-6 py-4 rounded-full bg-[#25d366] hover:bg-[#1ebe5a] text-white font-medium text-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><use href="#icono-wa"/></svg>
+                        Enviar consulta por WhatsApp
                     </button>
-                    <p class="sm:col-span-2 text-xs text-gray-500 text-center">Se abre WhatsApp con tu consulta escrita: solo tenés que enviarla.
-                        ¿Preferís el formulario? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFwoSpoXARtZrD_Mmj8u4_xBf0l9rsX65QcGhu84jsWfCd7A/viewform" target="_blank" rel="noopener" class="underline">Completalo acá</a>.</p>
                 </form>
             </div>
         </section>
 
-        <section id="preguntas" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-5 max-w-3xl">
-                <h2 class="font-serif text-3xl md:text-5xl text-gray-800 mb-10">Preguntas frecuentes</h2>
-                <div class="divide-y divide-gray-200 border-y border-gray-200">
-                    <details class="group py-4"><summary class="cursor-pointer list-none flex justify-between items-center text-lg font-medium text-gray-800">¿A qué hora es la entrada y la salida?<span class="text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-gray-600">La entrada es desde las 15:00 y la salida hasta las 11:00. Si la disponibilidad lo permite podemos ser flexibles: consultanos.</p></details>
-                    <details class="group py-4"><summary class="cursor-pointer list-none flex justify-between items-center text-lg font-medium text-gray-800">¿Hay ropa de cama y toallas?<span class="text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-gray-600">Hay frazadas para todas las camas, pero no ropa de cama (sábanas y fundas) ni toallas.</p></details>
-                    <details class="group py-4"><summary class="cursor-pointer list-none flex justify-between items-center text-lg font-medium text-gray-800">¿Hay lugar para estacionar?<span class="text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-gray-600">Sí: el predio es cerrado y entran cómodos dos autos.</p></details>
-                    <details class="group py-4"><summary class="cursor-pointer list-none flex justify-between items-center text-lg font-medium text-gray-800">¿Hay comercios cerca?<span class="text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-gray-600">A dos cuadras, en calle 7 y Antúnez, hay una panadería. A una cuadra y media, la rotisería Faoma (pizzas y postres). A nueve cuadras, supermercado, carnicería y el Restaurante Santa Ana.</p></details>
-                    <details class="group py-4"><summary class="cursor-pointer list-none flex justify-between items-center text-lg font-medium text-gray-800">¿Cómo llego en ómnibus?<span class="text-2xl transition-transform group-open:rotate-45">+</span></summary><p class="pt-3 text-gray-600">Con el 713 de COPSA, que sale de Tres Cruces y para en el Hospital de Clínicas, Comercio, Portones y Santa Mónica (se puede reservar asiento por teléfono). Son unas 2 horas; en verano pasa cada una hora. Bajate en la calle 8 de Santa Ana: desde ahí son 5 cuadras hasta El Sandú.</p></details>
+        <section id="preguntas" class="py-20 md:py-28 bg-[#F6F1EA]">
+            <div class="max-w-3xl mx-auto px-5">
+                <p class="etiqueta mb-4">Antes de venir</p>
+                <h2 class="font-serif text-4xl md:text-5xl text-[#1f2a2b] mb-10">Preguntas frecuentes</h2>
+                <div class="divide-y divide-[#e3dbcf] border-y border-[#e3dbcf]">
+                    <details class="group py-5"><summary class="cursor-pointer list-none flex justify-between items-center gap-6 text-lg text-[#1f2a2b]">¿Hay ropa de cama y toallas?<span class="mas">+</span></summary><p class="pt-3 text-[#4b5758] leading-relaxed">Hay frazadas para todas las camas, pero no ropa de cama (sábanas y fundas) ni toallas.</p></details>
+                    <details class="group py-5"><summary class="cursor-pointer list-none flex justify-between items-center gap-6 text-lg text-[#1f2a2b]">¿A qué hora es la entrada y la salida?<span class="mas">+</span></summary><p class="pt-3 text-[#4b5758] leading-relaxed">La entrada es desde las 15:00 y la salida hasta las 11:00. Si la disponibilidad lo permite podemos ser flexibles: consultanos.</p></details>
+                    <details class="group py-5"><summary class="cursor-pointer list-none flex justify-between items-center gap-6 text-lg text-[#1f2a2b]">¿Puedo ir con mi perro?<span class="mas">+</span></summary><p class="pt-3 text-[#4b5758] leading-relaxed">Sí, las mascotas son bienvenidas. El predio es cerrado. Avisanos en la consulta así lo tenemos en cuenta.</p></details>
+                    <details class="group py-5"><summary class="cursor-pointer list-none flex justify-between items-center gap-6 text-lg text-[#1f2a2b]">¿Hay lugar para estacionar?<span class="mas">+</span></summary><p class="pt-3 text-[#4b5758] leading-relaxed">Sí: el predio es cerrado y entran cómodos dos autos.</p></details>
+                    <details class="group py-5"><summary class="cursor-pointer list-none flex justify-between items-center gap-6 text-lg text-[#1f2a2b]">¿Cómo llego en ómnibus?<span class="mas">+</span></summary><p class="pt-3 text-[#4b5758] leading-relaxed">Con el 713 de COPSA, que sale de Tres Cruces y para en el Hospital de Clínicas, Comercio, Portones y Santa Mónica (se puede reservar asiento por teléfono). Son unas 2 horas; en verano pasa cada una hora. Bajate en la calle 8 de Santa Ana: desde ahí son 5 cuadras hasta la casa.</p></details>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-5 text-center">
-            <p class="text-2xl font-serif mb-2">El Sandú</p>
-            <p class="text-gray-400">Santa Ana, Canelones, Uruguay</p>
-            <p class="text-sm text-gray-500 mt-8">&copy; 2026 El Sandú. Todos los derechos reservados.</p>
-            <p class="text-sm text-gray-500 mt-2"><a href="https://jperez.pages.dev/" target="_blank" class="hover:text-gray-300">Diseño Essenza - Javier Perez</a> · <a href="https://tourvirtual360.pro/" target="_blank" class="hover:text-gray-300">Tour 360 por Tour Virtual 360</a></p>
+    <footer class="bg-[#13292a] text-white/70 pt-16 pb-28 md:pb-16">
+        <div class="max-w-6xl mx-auto px-5 md:flex md:justify-between md:items-end gap-10">
+            <div>
+                <p class="font-serif text-3xl text-white mb-2">El Sandú</p>
+                <p>Santa Ana, Canelones, Uruguay</p>
+            </div>
+            <div class="mt-8 md:mt-0 text-sm space-y-1 md:text-right">
+                <p>&copy; 2026 El Sandú</p>
+                <p><a href="https://jperez.pages.dev/" target="_blank" class="hover:text-white">Web: Essenza - Javier Perez</a> · <a href="https://tourvirtual360.pro/" target="_blank" class="hover:text-white">Tour 360: Tour Virtual 360</a></p>
+            </div>
         </div>
     </footer>
 
-    <a href="https://wa.link/vn857j" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Escribinos por WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+    <!-- WhatsApp: barra fija abajo en el celular, botón redondo en la PC. -->
+    <svg width="0" height="0" class="absolute" aria-hidden="true"><symbol id="icono-wa" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></symbol></svg>
+    <a id="whatsapp-barra" href="https://wa.me/59899204321?text=Hola%2C%20quer%C3%ADa%20consultar%20por%20El%20Sand%C3%BA" target="_blank" rel="noopener" class="md:hidden fixed inset-x-0 bottom-0 z-40 m-3 flex justify-center items-center gap-3 py-4 rounded-full bg-[#25d366] text-white font-medium shadow-xl">
+        <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><use href="#icono-wa"/></svg>
+        Consultar por WhatsApp
+    </a>
+    <a href="https://wa.me/59899204321?text=Hola%2C%20quer%C3%ADa%20consultar%20por%20El%20Sand%C3%BA" target="_blank" rel="noopener" class="hidden md:flex whatsapp-float" aria-label="Escribinos por WhatsApp">
+        <svg width="30" height="30" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><use href="#icono-wa"/></svg>
     </a>
 
     <script src="script.js" defer></script>

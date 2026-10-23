@@ -33,18 +33,19 @@ de esa Function.
 ## Renovacion (rama `renovacion`, octubre 2026)
 
 Vista previa para proponerle a Elkis volver al mantenimiento mensual: Cloudflare Pages
-publica cada rama aparte en `renovacion.elsandu.pages.dev`, sin tocar el sitio publicado.
+publica cada rama aparte en `renovacion.elsandu.pages.dev` (con `noindex`), sin tocar el
+sitio publicado.
 
-- **Inicio:** video del dron (`assets/inicio/dron-celu.mp4` vertical, `dron-pc.mp4`
-  horizontal, ~1,3 MB c/u) sobre su portada. Se baja despues de cargar la pagina y no con
-  "ahorro de datos".
+- **Inicio:** foto del dron (`assets/inicio/portada-pc.webp`, y un recorte 4:5 para el
+  celular). El video en buena calidad (`dron-pc.mp4` / `dron-celu.mp4`, 7-9 MB) se abre en
+  una ventana y se baja solo si tocan "Ver la casa desde el aire".
 - **Tour 360:** `tours.tourvirtual360.pro/el-sandu/` (repo `tours-360`). Hay una portada y el
   iframe se crea al tocarla, con `allow` para giroscopio y pantalla completa.
-- **Ambientes:** `assets/ambientes/` son fotos comunes sacadas de las fotos 360 del rodaje
-  del 21/10/2026, una por ambiente. Las 34 fotos de antes quedan en "Ver mas fotos" y se
-  bajan recien al abrirlo.
-- **Reserva:** el formulario arma el mensaje y abre WhatsApp. El Google Calendar se carga al
-  tocarlo. El Google Form de antes (la planilla de solicitudes) sigue como link.
+- **Fotos:** solo las del rodaje 360 del 21/10/2026 (`assets/ambientes/`, una por ambiente):
+  son las que muestran la casa como esta hoy. Las de `assets/Fotos/` ya no se usan.
+- **Reserva:** el formulario arma el mensaje y abre WhatsApp al +598 99 204 321. Se sacaron
+  el Google Calendar (mostraba citas personales) y el Google Form.
+- **Diseno:** sin emojis; numeros, rotulos y listas con lineas finas. Lora + Inter.
 - **Estilos:** Tailwind compilado en `assets/estilos.css` (antes `cdn.tailwindcss.com`).
   Despues de cambiar clases en `index.html` o `script.js`, desde la raiz:
   `npx tailwindcss@3.4.17 -c herramientas/tailwind.config.js -i herramientas/entrada.css -o assets/estilos.css --minify`
