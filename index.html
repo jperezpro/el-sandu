@@ -126,7 +126,7 @@
         </section>
 
         <!-- Los números de la casa -->
-        <section class="bg-white">
+        <section id="datos" class="bg-white">
             <dl class="max-w-6xl mx-auto px-5 py-14 md:py-20 grid grid-cols-2 md:grid-cols-4 gap-y-10">
                 <div class="dato"><dt class="etiqueta">Huéspedes</dt><dd class="numero">6</dd></div>
                 <div class="dato"><dt class="etiqueta">Dormitorios</dt><dd class="numero">2</dd></div>
@@ -160,10 +160,13 @@
         <!-- La casa, en tarjetas grandes con la foto de fondo -->
         <section id="espacios" class="py-24 md:py-32 bg-[#f5f5f7]">
             <div class="max-w-6xl mx-auto px-5">
-                <h2 class="font-serif text-5xl md:text-6xl text-[#1d1d1f] mb-12 md:mb-16">La casa.</h2>
+                <h2 class="font-serif text-5xl md:text-7xl mb-12 md:mb-16 degrade-madera">La casa.</h2>
                 <div class="grid md:grid-cols-2 gap-5">
                     <article class="tarjeta md:col-span-2 aspect-[4/5] md:aspect-[21/9]">
-                        <img src="assets/ambientes/living.webp" alt="Living con estufa a leña y sillones de cuero" loading="lazy" decoding="async" class="foto" data-full="assets/ambientes/living.webp">
+                        <picture>
+                            <source media="(max-width: 767px)" srcset="assets/espacios/living-celu.webp">
+                            <img src="assets/espacios/living-pc.webp" alt="Living con estufa a leña y sillones de cuero" loading="lazy" decoding="async" class="foto" data-full="assets/ambientes/living.webp">
+                        </picture>
                         <div class="texto">
                             <p class="etiqueta-clara mb-3">Planta baja</p>
                             <h3 class="font-serif text-3xl md:text-5xl">Un living para quedarse.</h3>
@@ -171,15 +174,15 @@
                         </div>
                     </article>
                     <article class="tarjeta aspect-[4/5]">
-                        <img src="assets/ambientes/barbacoa.webp" alt="Barbacoa vidriada con mesa larga" loading="lazy" decoding="async" class="foto" data-full="assets/ambientes/barbacoa.webp">
+                        <img src="assets/espacios/barbacoa.webp" alt="Barbacoa vidriada con mesa larga y ventanales al jardín" loading="lazy" decoding="async" class="foto" data-full="assets/ambientes/barbacoa.webp">
                         <div class="texto">
                             <p class="etiqueta-clara mb-3">Barbacoa</p>
                             <h3 class="font-serif text-3xl md:text-4xl">El asado, llueva o truene.</h3>
-                            <p class="mt-3 max-w-sm text-white/85">Cerrada y vidriada, con mesa larga para todos y la parrilla al fondo.</p>
+                            <p class="mt-3 max-w-sm text-white/85">Cerrada y vidriada, con mesa larga para todos, ventanales al jardín y la parrilla a un paso.</p>
                         </div>
                     </article>
                     <article class="tarjeta aspect-[4/5]">
-                        <img src="assets/ambientes/dormitorio.webp" alt="Dormitorio principal con cama de dos plazas" loading="lazy" decoding="async" class="foto" data-full="assets/ambientes/dormitorio.webp">
+                        <img src="assets/espacios/dormitorio.webp" alt="Dormitorio principal con cama de dos plazas y salida a la terraza" loading="lazy" decoding="async" class="foto" data-full="assets/ambientes/dormitorio.webp">
                         <div class="texto">
                             <p class="etiqueta-clara mb-3">Planta alta</p>
                             <h3 class="font-serif text-3xl md:text-4xl">Arriba, a descansar.</h3>
@@ -257,7 +260,7 @@
                     <img src="assets/inicio/playa.webp" alt="La costa de Santa Ana desde el aire, a media cuadra de El Sandú" loading="lazy" decoding="async" class="w-full aspect-[4/5] object-cover rounded-[28px]">
                     <div>
                         <p class="etiqueta mb-4">Ubicación</p>
-                        <h2 class="font-serif text-4xl md:text-5xl text-[#1d1d1f] leading-tight mb-6">Donde el bosque se encuentra con el mar.</h2>
+                        <h2 class="font-serif text-4xl md:text-6xl leading-[1.05] mb-6 degrade-bosque">Donde el bosque se encuentra con el mar.</h2>
                         <p class="text-[#6e6e73] text-lg leading-relaxed mb-8">Santa Ana es un balneario tranquilo de Canelones. A la playa se va caminando, sin usar el auto.</p>
                         <dl class="divide-y divide-[#d2d2d7] border-y border-[#d2d2d7] text-[#1d1d1f]">
                             <div class="flex justify-between py-3.5"><dt class="text-[#6e6e73]">Playa</dt><dd class="font-medium">media cuadra</dd></div>
@@ -278,7 +281,7 @@
             <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-12 gap-10">
                 <div class="md:col-span-4">
                     <p class="etiqueta mb-4">Tarifas</p>
-                    <h2 class="font-serif text-4xl md:text-5xl text-[#1d1d1f] leading-tight">Temporada de verano.</h2>
+                    <h2 class="font-serif text-5xl md:text-6xl leading-[1.05] degrade-verano">Temporada de verano.</h2>
                 </div>
                 <div class="md:col-span-8 bg-white rounded-[28px] p-6 md:p-10">
                     <!-- VISTA PREVIA: sacar este aviso cuando Elkis pase las tarifas 2026-2027. -->
