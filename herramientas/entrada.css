@@ -72,6 +72,11 @@ summary::-webkit-details-marker { display: none; }
 .campo { display: block; font-size: .875rem; font-weight: 500; color: #1d1d1f; }
 .campo input, .campo select, .campo textarea { display: block; width: 100%; margin-top: .4rem; padding: .85rem 1rem; border: 1px solid #d2d2d7;
                                                border-radius: 12px; background: #fff; font-weight: 400; color: #1d1d1f; }
+/* En el iPhone (Safari) el campo de fecha tiene un ancho mínimo propio y se salía del formulario
+   por la derecha; sin la apariencia nativa ocupa el ancho de su columna, como en Android. */
+.campo { min-width: 0; }
+.campo input[type="date"] { -webkit-appearance: none; appearance: none; min-width: 0; max-width: 100%; min-height: 3.2rem; line-height: 1.3; }
+.campo input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 .campo input:focus, .campo select:focus, .campo textarea:focus { outline: 2px solid #0071e3; outline-offset: 1px; border-color: transparent; }
 
 /* Encabezado: transparente sobre la foto del inicio, blanco translúcido al bajar o con el menú abierto */

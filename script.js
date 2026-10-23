@@ -2,7 +2,6 @@
 // Lo pesado (el video y el tour) se carga recién cuando lo piden.
 (function () {
     var WHATSAPP = '59899204321';
-    var PRODUCCION = ['elsandu.pages.dev', 'elsandu.com', 'www.elsandu.com'];
 
     // Menú del celular
     var botonMenu = document.getElementById('boton-menu');
@@ -121,19 +120,5 @@
         new IntersectionObserver(function (entradas) {
             barra.classList.toggle('oculta', entradas[0].isIntersecting);
         }, { threshold: 0.15 }).observe(document.getElementById('reservar'));
-    }
-
-    // Google Analytics solo en el sitio publicado (no en las vistas previas), y después de cargar.
-    if (PRODUCCION.indexOf(location.hostname) >= 0) {
-        window.addEventListener('load', function () {
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function () { dataLayer.push(arguments); };
-            gtag('js', new Date());
-            gtag('config', 'G-BDHW2TW4R4');
-            var s = document.createElement('script');
-            s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-BDHW2TW4R4';
-            document.head.appendChild(s);
-        });
     }
 })();

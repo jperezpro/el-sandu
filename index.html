@@ -68,6 +68,23 @@
       ]
     }
     </script>
+
+    <!-- Google Analytics solo en el sitio publicado (no en las vistas previas de Cloudflare) y
+         después de que cargó la página, para no frenarla. El QA semanal busca este ID en el HTML. -->
+    <script>
+      if (['elsandu.pages.dev', 'elsandu.com', 'www.elsandu.com'].indexOf(location.hostname) >= 0) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', 'G-BDHW2TW4R4');
+        window.addEventListener('load', function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-BDHW2TW4R4';
+          document.head.appendChild(s);
+        });
+      }
+    </script>
 </head>
 <body class="antialiased">
 
@@ -289,11 +306,9 @@
             <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-12 gap-10">
                 <div class="md:col-span-4">
                     <p class="etiqueta mb-4">Tarifas</p>
-                    <h2 class="font-serif text-5xl md:text-6xl leading-[1.05] degrade-verano">Temporada de verano.</h2>
+                    <h2 class="font-serif text-5xl md:text-6xl leading-[1.05] degrade-verano">Verano 2027</h2>
                 </div>
                 <div class="md:col-span-8 bg-white rounded-[28px] p-6 md:p-10">
-                    <!-- VISTA PREVIA: sacar este aviso cuando Elkis pase las tarifas 2026-2027. -->
-                    <p class="mb-6 p-4 rounded-2xl bg-amber-50 text-amber-900 text-sm">Vista previa: son las tarifas de la temporada 2026. Se cambian por las de 2026-2027 apenas estén.</p>
                     <dl class="divide-y divide-[#d2d2d7]">
                         <div class="py-5 flex justify-between items-baseline gap-4"><dt class="font-serif text-2xl text-[#1d1d1f]">Enero</dt><dd class="text-right"><span class="text-xl text-[#1d1d1f] font-medium">$24.000</span> <span class="text-[#6e6e73]">por semana</span><span class="block text-sm text-[#86868b]">$3.430 por día</span></dd></div>
                         <div class="py-5 flex justify-between items-baseline gap-4"><dt class="font-serif text-2xl text-[#1d1d1f]">Febrero</dt><dd class="text-right"><span class="text-xl text-[#1d1d1f] font-medium">$21.000</span> <span class="text-[#6e6e73]">por semana</span><span class="block text-sm text-[#86868b]">$3.000 por día</span></dd></div>
@@ -364,7 +379,7 @@
         <div class="max-w-6xl mx-auto px-5">
             <div class="flex flex-col md:flex-row md:justify-between gap-2 border-t border-[#d2d2d7] pt-5">
                 <p><span class="text-[#1d1d1f]">El Sandú</span> · Santa Ana, Canelones, Uruguay · &copy; 2026</p>
-                <p><a href="https://jperez.pages.dev/" target="_blank" class="hover:underline">Web: Essenza - Javier Perez</a> · <a href="https://tourvirtual360.pro/" target="_blank" class="hover:underline">Tour 360: Tour Virtual 360</a></p>
+                <p>Sitio <a href="https://jperez.pages.dev/" target="_blank" class="hover:underline">Javier Perez</a> · <a href="https://tourvirtual360.pro/" target="_blank" class="hover:underline">Tour Virtual 360</a></p>
             </div>
         </div>
     </footer>
