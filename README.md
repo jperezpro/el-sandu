@@ -42,10 +42,12 @@ sitio publicado.
 - **Tour 360:** `tours.tourvirtual360.pro/el-sandu/` (repo `tours-360`). Hay una portada y el
   iframe se crea al tocarla, con `allow` para giroscopio y pantalla completa.
 - **Fotos:** solo las del rodaje 360 del 21/10/2026 (`assets/ambientes/`, una por ambiente):
-  son las que muestran la casa como esta hoy. Las de `assets/Fotos/` ya no se usan.
+  son las que muestran la casa como esta hoy. Estilo camara de accion: gran angular de 135-140°
+  con algo de ojo de pez y la camara un poco hacia arriba. Las de `assets/Fotos/` ya no se usan.
 - **Reserva:** el formulario arma el mensaje y abre WhatsApp al +598 99 204 321. Se sacaron
   el Google Calendar (mostraba citas personales) y el Google Form.
-- **Diseno:** sin emojis; numeros, rotulos y listas con lineas finas. Lora + Inter.
+- **Diseno:** estilo Apple: fondos blanco, gris #f5f5f7 y negro; titulos con degrade de
+  atardecer sobre negro, botones de vidrio esmerilado y tarjetas de 28 px. Sin emojis. Lora + Inter.
 - **Estilos:** Tailwind compilado en `assets/estilos.css` (antes `cdn.tailwindcss.com`).
   Despues de cambiar clases en `index.html` o `script.js`, desde la raiz:
   `npx tailwindcss@3.4.17 -c herramientas/tailwind.config.js -i herramientas/entrada.css -o assets/estilos.css --minify`

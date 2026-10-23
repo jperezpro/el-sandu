@@ -69,10 +69,11 @@
     }
     function abrir(i) { mostrar(i); lightbox.classList.add('active'); }
     fotos.forEach(function (f, i) { f.addEventListener('click', function () { abrir(i); }); });
-    // Las fotos grandes de "La casa" abren el mismo ambiente en el lightbox.
-    document.querySelectorAll('#espacios .foto').forEach(function (f) {
-        f.addEventListener('click', function () {
-            abrir(fotos.findIndex(function (g) { return g.dataset.full === f.dataset.full; }));
+    // Las tarjetas de "La casa" abren el mismo ambiente en el lightbox.
+    document.querySelectorAll('#espacios .tarjeta').forEach(function (t) {
+        var full = t.querySelector('.foto').dataset.full;
+        t.addEventListener('click', function () {
+            abrir(fotos.findIndex(function (g) { return g.dataset.full === full; }));
         });
     });
     function cerrar() { lightbox.classList.remove('active'); }

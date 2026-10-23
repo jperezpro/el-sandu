@@ -5,60 +5,85 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Paleta: arena #F6F1EA, verde #0f3d3e, tinta #1f2a2b, texto #4b5758, línea #e3dbcf. */
-body { font-family: 'Inter', system-ui, sans-serif; background-color: #F6F1EA; color: #4b5758; }
-h1, h2, h3, .font-serif { font-family: 'Lora', Georgia, serif; font-weight: 500; letter-spacing: -0.01em; }
+/* Paleta neutra, como la de Apple: blanco, gris #f5f5f7 y negro; texto #1d1d1f y #6e6e73, líneas
+   #d2d2d7. El color lo ponen las fotos y un degradé de atardecer en los títulos sobre negro. */
+body { font-family: 'Inter', system-ui, sans-serif; background-color: #fff; color: #1d1d1f; }
+h1, h2, h3, .font-serif { font-family: 'Lora', Georgia, serif; font-weight: 500; letter-spacing: -0.015em; }
 
-/* Rótulo chico en mayúsculas espaciadas, encima de cada título */
-.etiqueta { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 500; color: #8a6a4a; }
-.text-white\/85.etiqueta, #inicio .etiqueta { color: rgba(255, 255, 255, .85); }
+/* Rótulos chicos en mayúsculas espaciadas */
+.etiqueta { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: #bf4800; }
+.etiqueta-clara { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; color: rgba(255, 255, 255, .75); }
 
-/* Números de la casa, separados por una línea fina */
-.dato { padding-left: 1.25rem; border-left: 1px solid #e3dbcf; color: #1f2a2b; }
-.dato dt { color: #8a6a4a; }
+/* Títulos con degradé de atardecer (sobre negro) */
+.degrade { background: linear-gradient(100deg, #ffd29a 0%, #ff9b6a 40%, #f2648f 75%, #c88cff 100%); -webkit-background-clip: text;
+           background-clip: text; color: transparent; padding-bottom: .08em; }
 
-/* Listas de comodidades y condiciones: texto con una línea fina abajo, sin íconos */
-.item { display: flex; gap: .9rem; align-items: baseline; padding: .9rem 0; border-bottom: 1px solid #e3dbcf; }
-.item::before { content: ''; flex: none; width: .45rem; height: .45rem; border-radius: 50%; background: #0f3d3e; transform: translateY(-.1rem); }
+/* Números de la casa */
+.dato { padding-left: 1.25rem; border-left: 1px solid #d2d2d7; }
+.numero { font-family: 'Lora', Georgia, serif; font-size: 2.75rem; line-height: 1; margin-top: .6rem; color: #1d1d1f; }
+@media (min-width: 768px) { .numero { font-size: 3.75rem; } }
+
+/* Botón de vidrio esmerilado, sobre fotos o negro */
+.vidrio { background: rgba(255, 255, 255, .16); color: #fff; border: 1px solid rgba(255, 255, 255, .35);
+          -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); transition: background .3s; }
+.vidrio:hover { background: rgba(255, 255, 255, .26); }
+
+/* Tarjetas grandes de "La casa": la foto de fondo y el texto encima */
+.tarjeta { position: relative; overflow: hidden; border-radius: 28px; cursor: pointer; color: #fff; background: #000; }
+.tarjeta .foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.6s cubic-bezier(.2, .7, .2, 1); }
+.tarjeta:hover .foto { transform: scale(1.04); }
+.tarjeta::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, .68) 0%, rgba(0, 0, 0, .25) 38%, rgba(0, 0, 0, 0) 60%); }
+.tarjeta .texto { position: absolute; z-index: 1; top: 0; left: 0; right: 0; padding: 1.75rem; }
+@media (min-width: 768px) { .tarjeta .texto { padding: 2.5rem; } }
+
+/* Galería: miniaturas redondeadas con el nombre abajo */
+.miniatura { overflow: hidden; border-radius: 18px; background: #f5f5f7; }
+.miniatura img { width: 100%; aspect-ratio: 8 / 5; object-fit: cover; transition: transform .9s cubic-bezier(.2, .7, .2, 1); }
+.group:hover .miniatura img { transform: scale(1.05); }
+#galeria figcaption { margin-top: .6rem; font-size: .95rem; color: #1d1d1f; }
+
+/* Listas de comodidades y condiciones */
+.item { display: flex; gap: .9rem; align-items: baseline; padding: .95rem 0; border-bottom: 1px solid #d2d2d7; }
+.item::before { content: ''; flex: none; width: .4rem; height: .4rem; border-radius: 50%; background: #1d1d1f; transform: translateY(-.1rem); }
 
 /* Preguntas frecuentes */
-.mas { font-size: 1.75rem; line-height: 1; font-weight: 300; color: #8a6a4a; transition: transform .3s; }
+.mas { font-size: 1.75rem; line-height: 1; font-weight: 300; color: #6e6e73; transition: transform .3s; }
 details[open] .mas { transform: rotate(45deg); }
 summary::-webkit-details-marker { display: none; }
 
 /* Formulario */
-.campo { display: block; font-size: .875rem; font-weight: 500; color: #1f2a2b; }
-.campo input, .campo select, .campo textarea { display: block; width: 100%; margin-top: .4rem; padding: .85rem 1rem; border: 1px solid #d8cfc2;
-                                               border-radius: .75rem; background: #fff; font-weight: 400; color: #1f2a2b; }
-.campo input:focus, .campo select:focus, .campo textarea:focus { outline: 2px solid #0f3d3e; outline-offset: 1px; border-color: transparent; }
+.campo { display: block; font-size: .875rem; font-weight: 500; color: #1d1d1f; }
+.campo input, .campo select, .campo textarea { display: block; width: 100%; margin-top: .4rem; padding: .85rem 1rem; border: 1px solid #d2d2d7;
+                                               border-radius: 12px; background: #fff; font-weight: 400; color: #1d1d1f; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { outline: 2px solid #0071e3; outline-offset: 1px; border-color: transparent; }
 
-/* Encabezado: transparente sobre la foto del inicio, sólido al bajar o con el menú abierto */
+/* Encabezado: transparente sobre la foto del inicio, blanco translúcido al bajar o con el menú abierto */
 #header { color: #fff; }
-#header.solido, #header.abierto { background: rgba(246, 241, 234, .94); color: #1f2a2b; box-shadow: 0 1px 0 #e3dbcf; backdrop-filter: blur(10px); }
-.enlace { position: relative; }
-.enlace::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: currentColor; transform: scaleX(0); transition: transform .25s; }
-.enlace:hover::after { transform: scaleX(1); }
+#header.solido, #header.abierto { background: rgba(255, 255, 255, .8); color: #1d1d1f; box-shadow: 0 1px 0 rgba(0, 0, 0, .08);
+                                  -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+.enlace { opacity: .85; transition: opacity .2s; }
+.enlace:hover { opacity: 1; }
 
-.btn-primary { background-color: #0f3d3e; color: #fff; transition: background-color .3s; }
-.btn-primary:hover { background-color: #0a2c2d; }
-#header:not(.solido):not(.abierto) .btn-primary { background: #fff; color: #0f3d3e; }
+.btn-primary { background-color: #1d1d1f; color: #fff; transition: background-color .3s; }
+.btn-primary:hover { background-color: #000; }
+#header:not(.solido):not(.abierto) .btn-primary { background: #fff; color: #1d1d1f; }
 
 .pulso { animation: pulso 2.4s infinite; }
-@keyframes pulso { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, .55); } 50% { box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); } }
+@keyframes pulso { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, .45); } 50% { box-shadow: 0 0 0 18px rgba(255, 255, 255, 0); } }
 
 /* Lightbox de fotos y ventana del video */
-.lightbox { display: none; position: fixed; z-index: 1000; inset: 0; background-color: rgba(10, 20, 20, .94); justify-content: center; align-items: center; }
+.lightbox { display: none; position: fixed; z-index: 1000; inset: 0; background-color: rgba(0, 0, 0, .94); justify-content: center; align-items: center; }
 .lightbox.active { display: flex; }
-.lightbox img { max-width: 92vw; max-height: 78vh; border-radius: 8px; }
-.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; border: 1px solid rgba(255, 255, 255, .35);
-                border-radius: 999px; width: 3rem; height: 3rem; font-size: 2rem; line-height: 1; background: rgba(0, 0, 0, .25); cursor: pointer; }
-.lightbox-nav:hover { background: rgba(255, 255, 255, .12); }
+.lightbox img { max-width: 92vw; max-height: 78vh; border-radius: 14px; }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; border: 1px solid rgba(255, 255, 255, .3);
+                border-radius: 999px; width: 3rem; height: 3rem; font-size: 2rem; line-height: 1; background: rgba(255, 255, 255, .08); cursor: pointer; }
+.lightbox-nav:hover { background: rgba(255, 255, 255, .18); }
 .lightbox-prev { left: 14px; }
 .lightbox-next { right: 14px; }
 
 /* WhatsApp: botón redondo en la PC; en el celular, barra fija abajo */
-.whatsapp-float { position: fixed; width: 58px; height: 58px; bottom: 24px; right: 24px; background-color: #25d366; color: #fff;
-                  border-radius: 50%; z-index: 100; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0, 0, 0, .2); }
+.whatsapp-float { position: fixed; width: 56px; height: 56px; bottom: 24px; right: 24px; background-color: #25d366; color: #fff;
+                  border-radius: 50%; z-index: 100; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0, 0, 0, .18); }
 .whatsapp-float:hover { background-color: #1ebe5a; }
 #whatsapp-barra { transition: transform .3s, opacity .3s; }
 #whatsapp-barra.oculta { transform: translateY(140%); opacity: 0; }
