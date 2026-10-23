@@ -39,8 +39,12 @@ sitio publicado.
 - **Inicio:** foto del dron (`assets/inicio/portada-pc.webp`, y un recorte 4:5 para el
   celular). El video en buena calidad (`dron-pc.mp4` / `dron-celu.mp4`, 7-9 MB) se abre en
   una ventana y se baja solo si tocan "Ver la casa desde el aire".
-- **Tour 360:** `tours.tourvirtual360.pro/el-sandu/` (repo `tours-360`). Hay una portada y el
-  iframe se crea al tocarla, con `allow` para giroscopio y pantalla completa.
+- **Tour 360:** `tours.tourvirtual360.pro/el-sandu/` (repo `tours-360`). La portada es una franja
+  panoramica del jardin (`assets/tour/jardin-360.webp`, 222° de la foto 360, sin el muro del
+  vecino) que mira de un lado al otro, con un icono de 360°. El iframe se crea al tocarla, con
+  `allow` para giroscopio y pantalla completa.
+- **Ubicacion:** `assets/inicio/costa.webp` es un cuadro del video de dron del Viejo Rancho
+  (rodaje del 04/10/2026, clip 0011, segundo 70), a un par de cuadras: el monte llegando a la playa.
 - **Fotos:** solo las del rodaje 360 del 21/10/2026 (`assets/ambientes/`, una por ambiente):
   son las que muestran la casa como esta hoy. Estilo camara de accion: gran angular de 135-140°
   con algo de ojo de pez y la camara un poco hacia arriba. Las de `assets/Fotos/` ya no se usan.

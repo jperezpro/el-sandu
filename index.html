@@ -138,18 +138,26 @@
         <!-- Tour 360 en negro, como una sección de producto. Se carga recién cuando lo abren. -->
         <section id="tour" class="py-24 md:py-32 bg-black text-white">
             <div class="max-w-6xl mx-auto px-5">
-                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-                    <p class="etiqueta-clara mb-5">Tour virtual 360°</p>
+                <div class="text-center max-w-3xl mx-auto mb-8 md:mb-10">
                     <h2 class="font-serif text-5xl md:text-7xl leading-[1.05] degrade">Recorrela antes de venir.</h2>
-                    <p class="mt-6 text-lg md:text-xl text-[#a1a1a6]">Los 13 ambientes, como si ya estuvieras ahí.</p>
+                    <p class="mt-5 text-lg md:text-xl text-[#a1a1a6]">Los 13 ambientes, como si ya estuvieras ahí.</p>
                 </div>
+                <!-- Portada: una franja panorámica del jardín que mira de un lado al otro, con el ícono de 360°. -->
                 <div id="tour-marco" class="relative aspect-[4/5] md:aspect-[16/9] rounded-[28px] overflow-hidden bg-[#111] ring-1 ring-white/10">
-                    <button id="tour-abrir" class="group absolute inset-0 w-full h-full" aria-label="Entrar al tour virtual 360 de El Sandú">
-                        <img src="assets/ambientes/living.webp" alt="Living de El Sandú con la estufa a leña" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1800ms] group-hover:scale-105">
-                        <span class="absolute inset-0 bg-gradient-to-t from-black/50 to-black/0"></span>
-                        <span class="relative inline-flex items-center gap-3 px-7 py-4 rounded-full vidrio text-lg font-medium pulso">
-                            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-                            Entrar al tour
+                    <button id="tour-abrir" class="group absolute inset-0 w-full h-full overflow-hidden" aria-label="Entrar al tour virtual 360 de El Sandú">
+                        <img src="assets/tour/jardin-360.webp" alt="" loading="lazy" decoding="async" class="tira absolute inset-y-0 left-0 h-full w-auto max-w-none">
+                        <span class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-black/10"></span>
+                        <span class="relative flex flex-col items-center gap-5">
+                            <svg viewBox="0 0 160 90" class="icono-360 w-36 md:w-44" aria-hidden="true">
+                                <defs><marker id="flecha-360" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fff"/></marker></defs>
+                                <path d="M19.4 62 A70 24 0 1 1 45 70.8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" marker-end="url(#flecha-360)"/>
+                                <text x="80" y="61" text-anchor="middle" fill="#fff" font-family="Inter, sans-serif" font-size="30" font-weight="600">360°</text>
+                            </svg>
+                            <span class="inline-flex items-center gap-3 px-7 py-4 rounded-full vidrio text-lg font-medium pulso">
+                                <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                                Entrar al tour
+                            </span>
+                            <span class="text-sm text-white/85">Mirá para todos lados, como si estuvieras ahí</span>
                         </span>
                     </button>
                 </div>
@@ -257,7 +265,7 @@
         <section id="ubicacion" class="py-24 md:py-32 bg-white">
             <div class="max-w-6xl mx-auto px-5">
                 <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-                    <img src="assets/inicio/playa.webp" alt="La costa de Santa Ana desde el aire, a media cuadra de El Sandú" loading="lazy" decoding="async" class="w-full aspect-[4/5] object-cover rounded-[28px]">
+                    <img src="assets/inicio/costa.webp" alt="La costa de Santa Ana desde el aire: el monte de pinos llega hasta la playa" loading="lazy" decoding="async" class="w-full aspect-[4/5] object-cover rounded-[28px]">
                     <div>
                         <p class="etiqueta mb-4">Ubicación</p>
                         <h2 class="font-serif text-4xl md:text-6xl leading-[1.05] mb-6 degrade-bosque">Donde el bosque se encuentra con el mar.</h2>
